@@ -3,16 +3,18 @@
 namespace App\Controller\API;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class BlogApiController extends AbstractController
 {
-    #[Route('/a/p/i/blog/api', name: 'app_a_p_i_blog_api')]
-    public function index(): Response
+    #[Route('/api/random/{id}', methods: ['GET', 'HEAD'])]
+    public function show(int $id): Response
     {
-        return $this->render('api/blog_api/index.html.twig', [
-            'controller_name' => 'BlogApiController',
+        return $this->json([
+             'id_random' => $id,
+             'title' => 'Kha jackie 2206',
         ]);
     }
 }
