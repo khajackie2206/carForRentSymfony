@@ -1,13 +1,21 @@
+
+
 # 🥇About the project
 **The Car For Rent Symfony project**  is a project to study and practice about symfony framework
 # 🎉 Symfony
-**Symfony** is a **PHP framework** for web and console applications and a set of reusable **PHP components**. Symfony is used by thousands of web applications and most of the popular PHP projects.
+<p align="center"><a href="https://symfony.com" target="_blank">
+    <img src="https://symfony.com/logos/symfony_black_02.svg">
+</a></p>
+
+[Symfony][1] is a **PHP framework** for web and console applications and a set
+of reusable **PHP components**. Symfony is used by thousands of web
+applications and most of the [popular PHP projects][2].
 # Getting started
 ## Setup Environment
 - Follow this article to install and learn about symfony 6.1: [Click here](https://symfony.com/doc/current/index.html)
 ## Technical Requirements
-- Install PHP 8.1 or higher and these PHP extensions (which are installed and enabled by default in most PHP 8 installations): Ctype, iconv, PCRE, Session, SimpleXML, and Tokenizer;
-- Install Composer, which is used to install PHP packages.
+- Install **PHP 8.1** or higher and these PHP extensions (which are installed and enabled by default in most PHP 8 installations): Ctype, iconv, PCRE, Session, SimpleXML, and Tokenizer;
+- Install **Composer**, which is used to install **PHP packages***.
 ```bash
 $ symfony check:requirements
 ```
@@ -29,3 +37,12 @@ $ composer create-project symfony/skeleton:"6.1.*" my_project_directory
 $ cd my-project/
 $ symfony server:start
 ```
+## Installing Packages
+- A common practice when developing Symfony applications is to install packages (Symfony calls them bundles) that provide ready-to-use features.
+```bash
+$ cd my-project/
+$ composer require logger
+```
+
+[1]: https://symfony.com
+[2]: https://symfony.com/projects
