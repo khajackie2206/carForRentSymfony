@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+
+<title>Hello ProductController!</title>
+
+{% block body %}
+    {% for car in cars %}
+        <div style="text-align: center;">
+            <h1>{{ car.name }}</h1>
+            <p>{{ car.price }}</p>
+            <img src="{{ car.thumb }}" alt="" width="550px;">
+        </div>
+    {% endfor %}
+{% endblock %}

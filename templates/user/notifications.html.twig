@@ -14,6 +14,9 @@
         {% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+    <h1>Hello {{ user_first_name }}!</h1>
+    <p>{{ notifications['errors'] }} </p>
+    <p>{{ notifications['messages'] }} </p>
+
     </body>
 </html>
