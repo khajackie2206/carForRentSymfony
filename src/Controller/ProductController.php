@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Category;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,13 +14,25 @@ class ProductController extends AbstractController
     public function createProduct(ManagerRegistry $doctrine): Response
     {
         $entityManager = $doctrine->getManager();
+        $category = new Category();
+        $category->setName('Luxury car');
+
         $product = new Product();
         $product->setName('g63');
         $product->setPrice(1300);
         $product->setThumb('https://khajackie2206.s3.ap-southeast-1.amazonaws.com/6e47636c53b2a0f639eb9c94a8b9a7f3g63.jpg');
+
+        // relates this product to the category
+        $product->setCategory($category);
+
+        $entityManager->persist($category);
         $entityManager->persist($product);
         $entityManager->flush();
-        return new Response('Save the new car with id '.$product->getId());
+
+        return new Response(
+            'Saved new product with id: '.$product->getId()
+            .' and new category with id: '.$category->getId()
+        );
     }
 
 
@@ -54,6 +67,27 @@ class ProductController extends AbstractController
         return $this->render('product/index.html.twig',[
             'cars' => $cars
         ]) ;
+    }
+
+
+    #[Route("/product/edit/{id}", name: "product_edit", requirements: ['id' => '\d+'])]
+    public function update(ManagerRegistry $doctrine, int $id): Response
+    {
+        $entityManager = $doctrine->getManager();
+        $cars = $entityManager->getRepository(Product::class)->find($id);
+
+        if (!$cars) {
+            throw $this->createNotFoundException(
+                'No product found for id '.$id
+            );
+        }
+
+        $cars->setName('G63');
+        $entityManager->flush();
+
+        return $this->redirectToRoute('product_show_all', [
+            'cars' => $cars
+        ]);
     }
 
 }
