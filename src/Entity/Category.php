@@ -39,7 +39,6 @@ class Category
     public function setName(string $name): self
     {
         $this->name = $name;
-
         return $this;
     }
 
@@ -64,12 +63,10 @@ class Category
     public function removeProduct(Product $product): self
     {
         if ($this->products->removeElement($product)) {
-            // set the owning side to null (unless already changed)
             if ($product->getCategory() === $this) {
                 $product->setCategory(null);
             }
         }
-
         return $this;
     }
 }

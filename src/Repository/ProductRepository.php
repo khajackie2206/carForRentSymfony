@@ -24,7 +24,6 @@ class ProductRepository extends ServiceEntityRepository
     public function add(Product $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
-
         if ($flush) {
             $this->getEntityManager()->flush();
         }
@@ -33,7 +32,6 @@ class ProductRepository extends ServiceEntityRepository
     public function remove(Product $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
-
         if ($flush) {
             $this->getEntityManager()->flush();
         }
@@ -53,5 +51,4 @@ class ProductRepository extends ServiceEntityRepository
         )->setParameter('price', $price);
         return $query->getResult();
     }
-
 }

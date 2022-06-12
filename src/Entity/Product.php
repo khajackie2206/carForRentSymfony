@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Entity;
 
 use App\Repository\ProductRepository;
@@ -40,7 +39,6 @@ class Product
     public function setName(string $name): self
     {
         $this->name = $name;
-
         return $this;
     }
 
@@ -52,7 +50,6 @@ class Product
     public function setPrice(int $price): self
     {
         $this->price = $price;
-
         return $this;
     }
 
@@ -64,7 +61,6 @@ class Product
     public function setThumb(string $thumb): self
     {
         $this->thumb = $thumb;
-
         return $this;
     }
 
@@ -76,7 +72,6 @@ class Product
     public function setCategory(?Category $category): self
     {
         $this->category = $category;
-
         return $this;
     }
 }

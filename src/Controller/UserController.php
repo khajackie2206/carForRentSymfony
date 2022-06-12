@@ -1,13 +1,12 @@
 <?php
 
-
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+
 class UserController extends AbstractController
 {
-
     public function notifications(): Response
     {
         $userFirstName = 'jackie2206';
@@ -17,5 +16,4 @@ class UserController extends AbstractController
             'notifications' => $userNotifications,
         ]);
     }
-
 }

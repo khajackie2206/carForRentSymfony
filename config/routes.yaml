@@ -4,3 +4,6 @@ controllers:
 app_lucky_number:
     path: /lucky/number
     controller: App\Controller\LuckyController::number
+app_user:
+    path: /user
+    controller: App\Controller\UserController::notifications
