@@ -55,7 +55,7 @@ class ProductController extends AbstractController
     }
 
     #[Route("/product/price/{price}", name: "product_search_by_price", requirements: ['price' => '\d+'])]
-    public function showPrice(ManagerRegistry $doctrine, int $price)
+    public function showPrice(ManagerRegistry $doctrine, int $price): Response
     {
         $cars = $doctrine->getRepository(Product::class)->findAllGreaterThanPrice($price);
         if (!$cars) {
