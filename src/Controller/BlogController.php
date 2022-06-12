@@ -42,7 +42,6 @@ class BlogController extends AbstractController
      #[Route('/redirect', methods: ['GET'])]
     public function redirectTest(): RedirectResponse
     {
-       return $this->redirectToRoute('app_blog');
+        return $this->redirectToRoute('app_blog');
     }
-
 }
