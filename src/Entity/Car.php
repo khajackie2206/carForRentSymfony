@@ -42,7 +42,6 @@ class Car
     public function setName(string $name): self
     {
         $this->name = $name;
-
         return $this;
     }
 
@@ -54,7 +53,6 @@ class Car
     public function setPrice(int $price): self
     {
         $this->price = $price;
-
         return $this;
     }
 
@@ -66,7 +64,6 @@ class Car
     public function setThumb(string $thumb): self
     {
         $this->thumb = $thumb;
-
         return $this;
     }
 
@@ -78,7 +75,6 @@ class Car
     public function setDescription(?string $description): self
     {
         $this->description = $description;
-
         return $this;
     }
 
@@ -90,7 +86,6 @@ class Car
     public function setBrand(?Brand $brand): self
     {
         $this->brand = $brand;
-
         return $this;
     }
 }
