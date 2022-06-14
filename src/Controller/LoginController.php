@@ -12,7 +12,7 @@ class LoginController extends AbstractController
     #[Route('/login', name: 'login')]
     public function index(AuthenticationUtils $authenticationUtils): Response
     {
-        if($this->isGranted('ROLE_USER')){
+        if ($this->isGranted('ROLE_USER')) {
             return $this->redirectToRoute('profile');
         }
         $error = $authenticationUtils->getLastAuthenticationError();
@@ -38,6 +38,6 @@ class LoginController extends AbstractController
     public function logout(): void
     {
         // controller can be blank: it will never be called!
-        throw new \Exception('Don\'t forget to activate logout in security.yaml');
+        throw new() \Exception('Don\'t forget to activate logout in security.yaml');
     }
 }

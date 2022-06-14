@@ -12,6 +12,7 @@ class UserController extends AbstractController
     public function index(): Response
     {
         return $this->json([
+            'status' => 'success',
             'message' => 'This is role_user'
         ]);
     }
