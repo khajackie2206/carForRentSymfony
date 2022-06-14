@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class LoginController extends AbstractController
 {
-    #[Route('/login', name: 'login')]
+    #[Route('/api/login', name: 'app_api_login')]
     public function login(JWTTokenManagerInterface $tokenManager): JsonResponse
     {
         $user = $this->getUser();
