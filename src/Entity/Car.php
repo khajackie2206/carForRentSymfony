@@ -16,18 +16,34 @@ class Car
     #[ORM\Column(type: 'string', length: 255)]
     private $name;
 
-    #[ORM\Column(type: 'integer')]
-    private $price;
-
     #[ORM\Column(type: 'string', length: 255)]
-    private $thumb;
-
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $description;
 
-    #[ORM\ManyToOne(targetEntity: Brand::class, inversedBy: 'cars')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\Column(type: 'string', length: 255)]
+    private $color;
+
+    #[ORM\Column(type: 'string', length: 255)]
     private $brand;
+
+    #[ORM\Column(type: 'float')]
+    private $price;
+
+    #[ORM\Column(type: 'integer')]
+    private $seats;
+
+    #[ORM\Column(type: 'integer')]
+    private $year;
+
+    #[ORM\Column(type: 'datetime_immutable')]
+    private $created_at;
+
+    #[ORM\OneToOne(inversedBy: 'car', targetEntity: Image::class, cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(nullable: false)]
+    private $thumbnail;
+
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'cars')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $created_user;
 
     public function getId(): ?int
     {
@@ -42,28 +58,7 @@ class Car
     public function setName(string $name): self
     {
         $this->name = $name;
-        return $this;
-    }
 
-    public function getPrice(): ?int
-    {
-        return $this->price;
-    }
-
-    public function setPrice(int $price): self
-    {
-        $this->price = $price;
-        return $this;
-    }
-
-    public function getThumb(): ?string
-    {
-        return $this->thumb;
-    }
-
-    public function setThumb(string $thumb): self
-    {
-        $this->thumb = $thumb;
         return $this;
     }
 
@@ -72,20 +67,106 @@ class Car
         return $this->description;
     }
 
-    public function setDescription(?string $description): self
+    public function setDescription(string $description): self
     {
         $this->description = $description;
+
         return $this;
     }
 
-    public function getBrand(): ?Brand
+    public function getColor(): ?string
+    {
+        return $this->color;
+    }
+
+    public function setColor(string $color): self
+    {
+        $this->color = $color;
+
+        return $this;
+    }
+
+    public function getBrand(): ?string
     {
         return $this->brand;
     }
 
-    public function setBrand(?Brand $brand): self
+    public function setBrand(string $brand): self
     {
         $this->brand = $brand;
+
         return $this;
     }
+
+    public function getPrice(): ?float
+    {
+        return $this->price;
+    }
+
+    public function setPrice(float $price): self
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+
+    public function getSeats(): ?int
+    {
+        return $this->seats;
+    }
+
+    public function setSeats(int $seats): self
+    {
+        $this->seats = $seats;
+
+        return $this;
+    }
+
+    public function getYear(): ?int
+    {
+        return $this->year;
+    }
+
+    public function setYear(int $year): self
+    {
+        $this->year = $year;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->created_at;
+    }
+
+    public function setCreatedAt(\DateTimeImmutable $created_at): self
+    {
+        $this->created_at = $created_at;
+        return $this;
+    }
+
+    public function getThumbnail(): ?Image
+    {
+        return $this->thumbnail;
+    }
+
+    public function setThumbnail(Image $thumbnail): self
+    {
+        $this->thumbnail = $thumbnail;
+
+        return $this;
+    }
+
+    public function getCreatedUser(): ?User
+    {
+        return $this->created_user;
+    }
+
+    public function setCreatedUser(?User $created_user): self
+    {
+        $this->created_user = $created_user;
+
+        return $this;
+    }
+
 }
