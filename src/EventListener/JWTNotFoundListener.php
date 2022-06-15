@@ -1,21 +1,16 @@
 <?php
 
 namespace App\EventListener;
+use App\Traits\JsonResponseTrait;
 use Lexik\Bundle\JWTAuthenticationBundle\Event\JWTNotFoundEvent;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 class JWTNotFoundListener
 {
-    /**
-     * @param JWTNotFoundEvent $event
-     */
+    use JsonResponseTrait;
     public function onJWTNotFound(JWTNotFoundEvent $event)
     {
-        $data = [
-            'status'  => '403 Forbidden',
-            'message' => 'Missing token',
-        ];
-        $response = new JsonResponse($data, 403);
+        $response = $this->error('Missing token', JsonResponse::HTTP_FORBIDDEN);
         $event->setResponse($response);
     }
 }
