@@ -22,7 +22,6 @@ class LoginController extends AbstractController
             'error'         => $error,
         ]);
     }
-
     #[Route('/login_success', name: 'login_success')]
     public function handleRole()
     {

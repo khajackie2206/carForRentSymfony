@@ -25,7 +25,7 @@ class LoginController extends AbstractController
             'status' => 'success',
             'data' => [
                 'user' => $user->getUserIdentifier(),
-                'roles' => $user->getRoles(),
+                'roles' =>  $user->getRoles(),
                 'token' => $token
             ],
         ]);
