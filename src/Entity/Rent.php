@@ -28,6 +28,14 @@ class Rent
     #[ORM\Column(type: 'datetime_immutable')]
     private $updated_at;
 
+    #[ORM\ManyToOne(targetEntity: car::class, inversedBy: 'rents')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $car;
+
+    #[ORM\ManyToOne(targetEntity: user::class, inversedBy: 'rents')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $user;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -89,6 +97,30 @@ class Rent
     public function setUpdatedAt(\DateTimeImmutable $updated_at): self
     {
         $this->updated_at = $updated_at;
+
+        return $this;
+    }
+
+    public function getCar(): ?car
+    {
+        return $this->car;
+    }
+
+    public function setCar(?car $car): self
+    {
+        $this->car = $car;
+
+        return $this;
+    }
+
+    public function getUser(): ?user
+    {
+        return $this->user;
+    }
+
+    public function setUser(?user $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }
