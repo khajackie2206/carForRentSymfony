@@ -9,6 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 class AdminController extends AbstractController
 {
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/admin', name: 'app_admin')]
     public function index(): Response
     {

@@ -3,16 +3,19 @@
 namespace App\Controller\API;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+
 class AdminController extends AbstractController
 {
-    #[Route('/api/admin', name: 'api_admin')]
-    public function index(): Response
+    #[Route('/api/admin', name: 'app_api_admin')]
+    public function index(): JsonResponse
     {
-        return $this->json( [
-            'message' => 'This is role_admin',
+        return $this->json([
+            'status' => 'success',
+            'data' => [
+                'message' => 'This is role_admin',
+            ]
         ]);
     }
 }
