@@ -21,11 +21,12 @@ class LoginController extends AbstractController
             ], Response::HTTP_UNAUTHORIZED);
         }
         $token = $tokenManager->create($user);
+
         return $this->json([
             'status' => 'success',
             'data' => [
                 'user' => $user->getUserIdentifier(),
-                'roles' =>  $user->getRoles(),
+                'roles' => $user->getRoles(),
                 'token' => $token
             ],
         ]);

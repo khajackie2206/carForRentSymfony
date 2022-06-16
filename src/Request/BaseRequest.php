@@ -16,5 +16,4 @@ abstract class BaseRequest
         }
         return $this;
     }
-
 }

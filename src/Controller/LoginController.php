@@ -22,6 +22,7 @@ class LoginController extends AbstractController
             'error'         => $error,
         ]);
     }
+
     #[Route('/login_success', name: 'login_success')]
     public function handleRole()
     {
@@ -31,11 +32,9 @@ class LoginController extends AbstractController
         return $this->redirectToRoute('profile');
     }
 
-    /**
-     * @Route("/logout", name="app_logout", methods={"POST"})
-     */
+    #[Route('/logout', name: 'app_logout', methods: ['POST'])]
     public function logout(): void
     {
-        throw new \Exception('Don\'t forget to activate logout in security.yaml');
+        throw new \Exception('Do not forget to activate logout in security.yaml');
     }
 }
