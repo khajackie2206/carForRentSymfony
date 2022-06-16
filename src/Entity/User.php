@@ -129,10 +129,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->created_at;
     }
 
-    public function setCreatedAt(\DateTimeImmutable $created_at): self
+    public function setCreatedAt(?\DateTimeImmutable $created_at): self
     {
         $this->created_at = $created_at;
-
         return $this;
     }
 
@@ -192,7 +191,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $rent->setUser(null);
             }
         }
-
         return $this;
+    }
+
+    public function jsonParse(): array
+    {
+        return [
+            'id' => $this->getId(),
+            'email' => $this->getEmail(),
+            'roles' => $this->getRoles(),
+        ];
     }
 }

@@ -149,7 +149,7 @@ class Car
         return $this->created_at;
     }
 
-    public function setCreatedAt(\DateTimeImmutable $created_at): self
+    public function setCreatedAt(?\DateTimeImmutable $created_at): self
     {
         $this->created_at = $created_at;
         return $this;
@@ -208,5 +208,22 @@ class Car
 
         return $this;
     }
+
+    public function JsonParse(): array
+    {
+        return [
+            'id' => $this->getId(),
+            'name' => $this->getName(),
+            'description' => $this->getDescription(),
+            'color' => $this->getColor(),
+            'brand' => $this->getBrand(),
+            'price' => $this->getPrice(),
+            'seats' => $this->getSeats(),
+            'year' => $this->getYear(),
+            'thumbnail' => $this->getThumbnail()->jsonParse(),
+            'createdUser' => $this->getCreatedUser()->jsonParse()
+        ];
+    }
+
 
 }

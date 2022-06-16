@@ -44,7 +44,7 @@ class Image
         return $this->created_at;
     }
 
-    public function setCreatedAt(\DateTimeImmutable $created_at): self
+    public function setCreatedAt(?\DateTimeImmutable $created_at): self
     {
         $this->created_at = $created_at;
 
@@ -66,5 +66,13 @@ class Image
         $this->car = $car;
 
         return $this;
+    }
+
+    public function jsonParse(): array
+    {
+        return [
+            'id' => $this->getId(),
+            'path' => $this->getPath()
+        ];
     }
 }
