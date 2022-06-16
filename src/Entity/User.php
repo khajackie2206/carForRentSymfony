@@ -30,7 +30,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $name;
 
     #[ORM\Column(type: 'datetime_immutable')]
-    private $created_at;
+    private $createdAt;
 
     #[ORM\OneToMany(mappedBy: 'created_user', targetEntity: Car::class)]
     private $cars;
@@ -128,12 +128,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function getCreatedAt(): ?\DateTimeImmutable
     {
-        return $this->created_at;
+        return $this->createdAt;
     }
 
-    public function setCreatedAt(?\DateTimeImmutable $created_at): self
+    public function setCreatedAt(?\DateTimeImmutable $createdAt): self
     {
-        $this->created_at = $created_at;
+        $this->createdAt = $createdAt;
 
         return $this;
     }

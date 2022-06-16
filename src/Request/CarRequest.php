@@ -4,7 +4,7 @@ namespace App\Request;
 
 use Symfony\Component\Validator\Constraints as Assert;
 
-class ListCarRequest
+class CarRequest
 {
     #[Assert\Choice(['black', 'grey'])]
     #[Assert\NotBlank]

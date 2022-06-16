@@ -17,7 +17,7 @@ class Image
     private $path;
 
     #[ORM\Column(type: 'datetime_immutable')]
-    private $created_at;
+    private $createdAt;
 
     #[ORM\OneToOne(mappedBy: 'thumbnail', targetEntity: Car::class, cascade: ['persist', 'remove'])]
     private $car;
@@ -41,12 +41,12 @@ class Image
 
     public function getCreatedAt(): ?\DateTimeImmutable
     {
-        return $this->created_at;
+        return $this->createdAt;
     }
 
-    public function setCreatedAt(?\DateTimeImmutable $created_at): self
+    public function setCreatedAt(?\DateTimeImmutable $createdAt): self
     {
-        $this->created_at = $created_at;
+        $this->createdAt = $createdAt;
 
         return $this;
     }

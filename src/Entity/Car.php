@@ -37,7 +37,7 @@ class Car
     private $year;
 
     #[ORM\Column(type: 'datetime_immutable')]
-    private $created_at;
+    private $createdAt;
 
     #[ORM\OneToOne(inversedBy: 'car', targetEntity: Image::class, cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
@@ -45,7 +45,7 @@ class Car
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'cars')]
     #[ORM\JoinColumn(nullable: false)]
-    private $created_user;
+    private $createdUser;
 
     #[ORM\OneToMany(mappedBy: 'car', targetEntity: Rent::class)]
     private $rents;
@@ -146,12 +146,12 @@ class Car
 
     public function getCreatedAt(): ?\DateTimeImmutable
     {
-        return $this->created_at;
+        return $this->createdAt;
     }
 
-    public function setCreatedAt(?\DateTimeImmutable $created_at): self
+    public function setCreatedAt(?\DateTimeImmutable $createdAt): self
     {
-        $this->created_at = $created_at;
+        $this->createdAt = $createdAt;
         return $this;
     }
 
@@ -169,12 +169,12 @@ class Car
 
     public function getCreatedUser(): ?User
     {
-        return $this->created_user;
+        return $this->createdUser;
     }
 
-    public function setCreatedUser(?User $created_user): self
+    public function setCreatedUser(?User $createdUser): self
     {
-        $this->created_user = $created_user;
+        $this->createdUser = $createdUser;
 
         return $this;
     }
@@ -208,22 +208,4 @@ class Car
 
         return $this;
     }
-
-    public function JsonParse(): array
-    {
-        return [
-            'id' => $this->getId(),
-            'name' => $this->getName(),
-            'description' => $this->getDescription(),
-            'color' => $this->getColor(),
-            'brand' => $this->getBrand(),
-            'price' => $this->getPrice(),
-            'seats' => $this->getSeats(),
-            'year' => $this->getYear(),
-            'thumbnail' => $this->getThumbnail()->jsonParse(),
-            'createdUser' => $this->getCreatedUser()->jsonParse()
-        ];
-    }
-
-
 }

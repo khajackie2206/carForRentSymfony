@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Car;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use App\Request\CarRequest;
 
 /**
  * @extends ServiceEntityRepository<Car>
@@ -19,5 +20,10 @@ class CarRepository extends BaseRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Car::class);
+    }
+
+    public function getAll(CarRequest $carRequest): array
+    {
+        return [];
     }
 }
