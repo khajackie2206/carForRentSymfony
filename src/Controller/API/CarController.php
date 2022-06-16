@@ -2,9 +2,13 @@
 
 namespace App\Controller\API;;
 use App\Repository\CarRepository;
+use App\Request\CarRequest;
+use App\Service\CarService;
 use App\Traits\JsonResponseTrait;
 use App\Transformer\CarTransformer;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -12,10 +16,21 @@ use Symfony\Component\Routing\Annotation\Route;
 class CarController extends AbstractController
 {
     use JsonResponseTrait;
-    #[Route('/', name: 'list_car')]
-    public function index(CarRepository $carRepository, CarTransformer $carTransformer): JsonResponse
+
+    private CarService $carService;
+
+    public function __construct(CarService $carService)
     {
-        $cars = $carRepository->findAll();
+        $this->carService = $carService;
+    }
+
+    #[Route('/', name: 'list_car')]
+    public function index(Request $request,CarRequest $carRequest ,ValidatorInterface $validator, CarTransformer $carTransformer): JsonResponse
+    {
+        $query = $request->query->all();
+        $carRequest = $carRequest->fromArray($query);
+        $validator->validate($carRequest);
+        $cars = $this->carService->findAll($carRequest);
         $result = $carTransformer->toArrayList($cars);
         return $this->success($result);
     }
