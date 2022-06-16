@@ -1,6 +1,7 @@
 <?php
 
 namespace App\DataFixtures;
+
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use App\Entity\Car;
 use App\Entity\Image;
@@ -14,16 +15,16 @@ class CarFixtures extends Fixture implements DependentFixtureInterface
 
     public function load(ObjectManager $manager)
     {
-        foreach ($this->getCar() as [$id, $name, $description, $color, $brand, $price, $seats, $year]){
+        foreach ($this->getCar() as [$id, $name, $description, $color, $brand, $price, $seats, $year]) {
             $car = new Car();
             /**
              * @var User $createdUser
              */
-            $createdUser = $this->getReference('user_'.$id);
+            $createdUser = $this->getReference('user_' . $id);
             /**
              * @var Image $imagePath
              */
-            $imagePath = $this->getReference('image_'.$id);
+            $imagePath = $this->getReference('image_' . $id);
 
             $car->setName($name)
                 ->setDescription($description)
@@ -35,7 +36,6 @@ class CarFixtures extends Fixture implements DependentFixtureInterface
                 ->setThumbnail($imagePath)
                 ->setCreatedUser($createdUser)
                 ->setCreatedAt(new \DateTimeImmutable(false));
-
             $manager->persist($car);
         }
         $manager->flush();
@@ -44,10 +44,11 @@ class CarFixtures extends Fixture implements DependentFixtureInterface
     private function getCar(): array
     {
         return [
-            [1, 'Lamboghini', 'Lamboghini', 'Grey', 'Lamboghini',3220, 4, 2022],
+            [1, 'Lamboghini', 'Lamboghini', 'Grey', 'Lamboghini', 3220, 4, 2022],
             [2, 'G63 sontung-mtp', 'G63 sontung-mtp', 'Black', 'G63', 1800, 7, 2021],
         ];
     }
+
     public function getDependencies()
     {
         return [

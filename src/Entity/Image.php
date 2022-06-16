@@ -62,7 +62,6 @@ class Image
         if ($car->getThumbnail() !== $this) {
             $car->setThumbnail($this);
         }
-
         $this->car = $car;
 
         return $this;

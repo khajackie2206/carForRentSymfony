@@ -1,7 +1,9 @@
 <?php
 
 namespace App\Request;
+
 use Symfony\Component\Validator\Constraints as Assert;
+
 class ListCarRequest
 {
     #[Assert\Choice(['black', 'grey'])]
