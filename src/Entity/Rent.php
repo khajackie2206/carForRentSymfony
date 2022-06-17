@@ -28,11 +28,11 @@ class Rent
     #[ORM\Column(type: 'datetime_immutable')]
     private $updatedAt;
 
-    #[ORM\ManyToOne(targetEntity: car::class, inversedBy: 'rents')]
+    #[ORM\ManyToOne(targetEntity: car::class , inversedBy: 'rents')]
     #[ORM\JoinColumn(nullable: false)]
     private $car;
 
-    #[ORM\ManyToOne(targetEntity: user::class, inversedBy: 'rents')]
+    #[ORM\ManyToOne(targetEntity: user::class , inversedBy: 'rents')]
     #[ORM\JoinColumn(nullable: false)]
     private $user;
 
@@ -82,7 +82,7 @@ class Rent
         return $this->createdAt;
     }
 
-    public function setCreatedAt(?\DateTimeImmutable $createdAt): self
+    public function setCreatedAt(? \DateTimeImmutable $createdAt) : self
     {
         $this->createdAt = $createdAt;
 
@@ -94,7 +94,7 @@ class Rent
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(?\DateTimeImmutable $updatedAt): self
+    public function setUpdatedAt(? \DateTimeImmutable $updatedAt) : self
     {
         $this->updatedAt = $updatedAt;
 

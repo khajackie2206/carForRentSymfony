@@ -13,6 +13,7 @@ trait JsonResponseTrait
             'status' => 'success',
             'data' => $data
         ];
+
         return new JsonResponse($dataResponse, $status, $headers);
     }
 
@@ -22,6 +23,7 @@ trait JsonResponseTrait
             'status' => 'error',
             'message' => $message
         ];
+
         return new JsonResponse($dataResponse, $status, $headers);
     }
 }

@@ -25,7 +25,7 @@ class AddCarType extends AbstractType
             ->add('description', TextareaType::class)
             ->add('brand', EntityType::class, [
                 'class' => Brand::class,
-                'choice_label' => 'brand']   )
+                'choice_label' => 'brand'])
             ->add('save', SubmitType::class)
         ;
     }

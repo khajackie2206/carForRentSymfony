@@ -10,7 +10,8 @@ use Doctrine\ORM\QueryBuilder;
 class BaseRepository extends ServiceEntityRepository
 {
     protected string $alias;
-    public function __construct(ManagerRegistry $registry, string $entityClass = '', $alias ='')
+
+    public function __construct(ManagerRegistry $registry, string $entityClass = '', $alias = '')
     {
         parent::__construct($registry, $entityClass);
         $this->alias = $alias;
@@ -33,6 +34,7 @@ class BaseRepository extends ServiceEntityRepository
         if (empty($value)) {
             return $cars;
         }
+
         return $cars->where($this->alias . ".$field = :$field")->setParameter($field, $value);
     }
 
@@ -41,28 +43,16 @@ class BaseRepository extends ServiceEntityRepository
         if (empty($value)) {
             return $cars;
         }
+
         return $cars->andWhere($this->alias . ".$field = :$field")->setParameter($field, $value);
     }
 
-    protected function orderBy(QueryBuilder $cars, string $value): QueryBuilder
+    protected function orderBy(QueryBuilder $cars, string $orderBy, string $orderType): QueryBuilder
     {
-        if(empty($value)) {
+        if (empty($orderBy) || empty($orderType)) {
             return $cars;
         }
-        $orderBy = explode('.', $value);
-        $field = $orderBy[0];
-        $sort = $orderBy[1];
-        switch ($field) {
-            case 'created':
-                $cars = $cars->orderBy($this->alias . ".createdAt", $sort);
-                break;
-            case 'price':
-                $cars = $cars->orderBy($this->alias . ".$field", $sort);
-                break;
-            default:
-                break;
-        }
-        return $cars;
 
+        return $cars->orderBy($this->alias . ".$orderBy", $orderType);
     }
 }

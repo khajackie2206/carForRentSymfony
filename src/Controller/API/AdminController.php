@@ -10,6 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class AdminController extends AbstractController
 {
     use JsonResponseTrait;
+
     #[Route('/api/admin', name: 'app_api_admin')]
     public function index(): JsonResponse
     {

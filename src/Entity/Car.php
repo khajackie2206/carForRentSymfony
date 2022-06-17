@@ -200,7 +200,6 @@ class Car
     public function removeRent(Rent $rent): self
     {
         if ($this->rents->removeElement($rent)) {
-            // set the owning side to null (unless already changed)
             if ($rent->getCar() === $this) {
                 $rent->setCar(null);
             }

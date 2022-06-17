@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Service;
+
 use App\Entity\Car;
 use App\Repository\CarRepository;
 use App\Request\CarRequest;
@@ -18,5 +19,4 @@ class CarService
     {
         return $this->carRepository->getAll($carRequest);
     }
-
 }

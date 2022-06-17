@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Transformer;
+
 use App\Entity\Car;
 
 class CarTransformer
