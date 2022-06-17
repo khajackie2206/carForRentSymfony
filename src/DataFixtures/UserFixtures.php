@@ -41,6 +41,7 @@ class UserFixtures extends Fixture
         return [
             [1, 'kha@123', ['ROLE_USER'], '123', 'khajackie1'],
             [2, 'kha@1234', ['ROLE_ADMIN'], '123', 'khajackie2'],
+            [3, 'kha@12345', ['ROLE_USER'], '123', 'khajackie3'],
         ];
     }
 }

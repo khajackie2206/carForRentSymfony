@@ -6,11 +6,11 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 class CarRequest extends BaseRequest
 {
-    #[Assert\NotBlank]
+    #[Assert\Type('string')]
     private ?string $color='';
 
     #[Assert\Type('int')]
-    private ?int $seats = 0;
+    private ?int $seats=0;
 
     #[Assert\Type('string')]
     private ?string $brand = '';

@@ -46,6 +46,7 @@ class CarFixtures extends Fixture implements DependentFixtureInterface
         return [
             [1, 'Lamboghini', 'Lamboghini', 'Grey', 'Lamboghini', 3220, 4, 2022],
             [2, 'G63 sontung-mtp', 'G63 sontung-mtp', 'Black', 'G63', 1800, 7, 2021],
+            [3, 'G63 hienho', 'G63 hienho', 'Grey', 'G63', 1700, 7, 2021],
         ];
     }
 

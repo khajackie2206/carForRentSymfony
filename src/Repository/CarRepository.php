@@ -29,8 +29,10 @@ class CarRepository extends BaseRepository
     {
         $cars = $this->createQueryBuilder(static::CAR_ALIAS);
         $cars = $this->filter($cars, 'color', $carRequest->getColor());
-        #$cars = $this->andFilter($cars, 'brand', $carRequest->getBrand());
-        #$cars = $this->andFilter($cars, 'seats', $carRequest-
+        $cars = $this->moreFilter($cars, 'brand', $carRequest->getBrand());
+        $cars = $this->moreFilter($cars, 'seats', $carRequest->getSeats());
+        $cars = $this->orderBy($cars, $carRequest->getOrderBy());
         return $cars->getQuery()->getResult();
     }
+
 }

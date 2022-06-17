@@ -31,6 +31,7 @@ class ImageFixtures extends Fixture
         return [
             [1, 'https://khajackie2206.s3.ap-southeast-1.amazonaws.com/adff179252b819b344d7d2f5ee03c604lamborghini.jpg'],
             [2, 'https://khajackie2206.s3.ap-southeast-1.amazonaws.com/6e47636c53b2a0f639eb9c94a8b9a7f3g63.jpg'],
+            [3, 'https://khajackie2206.s3.ap-southeast-1.amazonaws.com/6e47636c53b2a0f639eb9c94a8b9a7f3g63.jpg'],
         ];
     }
 }
