@@ -6,7 +6,7 @@ use App\Repository\ImageRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ImageRepository::class)]
-class Image
+class Image extends BaseEntity
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -21,6 +21,11 @@ class Image
 
     #[ORM\OneToOne(mappedBy: 'thumbnail', targetEntity: Car::class , cascade: ['persist', 'remove'])]
     private $car;
+
+    public function __construct()
+    {
+        $this->createdAt = new \DateTimeImmutable();
+    }
 
     public function getId(): ?int
     {

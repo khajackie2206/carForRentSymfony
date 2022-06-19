@@ -47,12 +47,12 @@ class BaseRepository extends ServiceEntityRepository
         return $cars->andWhere($this->alias . ".$field = :$field")->setParameter($field, $value);
     }
 
-    protected function orderBy(QueryBuilder $cars, string $orderBy, string $orderType): QueryBuilder
+    protected function orderBy(QueryBuilder $cars, string $orderType, string $orderBy): QueryBuilder
     {
         if (empty($orderBy) || empty($orderType)) {
             return $cars;
         }
 
-        return $cars->orderBy($this->alias . ".$orderBy", $orderType);
+        return $cars->orderBy($this->alias . ".$orderType", $orderBy);
     }
 }

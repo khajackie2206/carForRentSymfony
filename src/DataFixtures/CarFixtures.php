@@ -8,7 +8,6 @@ use App\Entity\Image;
 use App\Entity\User;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class CarFixtures extends Fixture implements DependentFixtureInterface
 {

@@ -12,7 +12,7 @@ class JWTExpiredListener
 
     public function onJWTExpired(JWTExpiredEvent $event)
     {
-        $response = $this->error('Your token is invalid', JsonResponse::HTTP_UNAUTHORIZED);
+        $response = $this->error('Your token was expired', JsonResponse::HTTP_UNAUTHORIZED);
         $event->setResponse($response);
     }
 }

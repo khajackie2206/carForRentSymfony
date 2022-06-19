@@ -6,11 +6,14 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 class CarRequest extends BaseRequest
 {
-    const DEFAULT_LIMIT = 10;
-    const DEFAULT_STRING = '';
-    const DEFAULT_INT = 0;
-    const DEFAULT_ORDER_TYPE = 'asc';
-    const DEFAULT_ORDER_BY = 'createdAt';
+    public const DEFAULT_LIMIT = 10;
+    public const DEFAULT_STRING = '';
+    public const DEFAULT_INT = 0;
+    public const SEATS_LIST = [4, 7, 16];
+    public const ORDER_TYPE_LIST = ['createdAt', 'price'];
+    public const ORDER_BY_LIST = ['asc', 'desc'];
+    public const DEFAULT_ORDER_TYPE = 'createdAt';
+    public const DEFAULT_ORDER_BY = 'desc';
 
     #[Assert\Type('string')]
     private ?string $brand = self::DEFAULT_STRING;
@@ -19,15 +22,18 @@ class CarRequest extends BaseRequest
     private ?string $color = self::DEFAULT_STRING;
 
     #[Assert\Type('integer')]
+    #[Assert\Choice(
+        choices: self::SEATS_LIST
+    )]
     private ?int $seats = self::DEFAULT_INT;
 
     #[Assert\Choice(
-        choices: ['created', 'price'],
+        choices: self::ORDER_BY_LIST,
     )]
     private ?string $orderBy = self::DEFAULT_ORDER_BY;
 
     #[Assert\Choice(
-        choices: ['asc', 'esc'],
+        choices: self::ORDER_TYPE_LIST,
     )]
     private ?string $orderType = self::DEFAULT_ORDER_TYPE;
 

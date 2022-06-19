@@ -32,16 +32,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'datetime_immutable')]
     private $createdAt;
 
-    #[ORM\OneToMany(mappedBy: 'created_user', targetEntity: Car::class )]
+    #[ORM\OneToMany(mappedBy: 'created_user', targetEntity: Car::class)]
     private $cars;
 
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Rent::class )]
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Rent::class)]
     private $rents;
 
     public function __construct()
     {
         $this->cars = new ArrayCollection();
         $this->rents = new ArrayCollection();
+        $this->createdAt = new \DateTimeImmutable();
     }
 
     public function getId(): ?int
@@ -131,7 +132,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->createdAt;
     }
 
-    public function setCreatedAt(? \DateTimeImmutable $createdAt) : self
+    public function setCreatedAt(?\DateTimeImmutable $createdAt): self
     {
         $this->createdAt = $createdAt;
 
