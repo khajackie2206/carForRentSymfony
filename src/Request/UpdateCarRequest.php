@@ -18,7 +18,7 @@ class UpdateCarRequest extends BaseRequest
     private $brand;
 
     #[Assert\Type('float')]
-    private float $price;
+    private ?float $price = null;
 
     #[Assert\Type('string')]
     private $description;
@@ -122,7 +122,7 @@ class UpdateCarRequest extends BaseRequest
     /**
      * @return float
      */
-    public function getPrice(): float
+    public function getPrice(): ?float
     {
         return $this->price;
     }
@@ -130,7 +130,7 @@ class UpdateCarRequest extends BaseRequest
     /**
      * @param float $price
      */
-    public function setPrice(float $price): void
+    public function setPrice(?float $price): void
     {
         $this->price = $price;
     }

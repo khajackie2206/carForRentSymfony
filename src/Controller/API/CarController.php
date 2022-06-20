@@ -4,6 +4,7 @@ namespace App\Controller\API;
 
 use App\Entity\Car;
 use App\Entity\User;
+use App\Mapper\AddCarRequestToCar;
 use App\Request\AddCarRequest;
 use App\Request\CarRequest;
 use App\Request\UpdateCarRequest;
@@ -56,7 +57,7 @@ class CarController extends AbstractController
         CarService         $carService,
         AddCarRequest      $addCarRequest,
         CarTransformer     $carTransformer,
-        CarTransfer        $carTransfer,
+        AddCarRequestToCar $addCarRequestToCar,
         ValidatorInterface $validator
     )
     {
@@ -66,21 +67,20 @@ class CarController extends AbstractController
         if (count($error) > 0) {
             throw new ValidatorException(code: Response::HTTP_BAD_REQUEST);
         }
-        $car = $carTransfer->transfer($carRequest);
+        $car = $addCarRequestToCar->transfer($carRequest);
         $result = $carTransformer->fromArray($carService->addCar($car));
 
         return $this->success($result);
     }
 
     #[IsGranted('ROLE_ADMIN', statusCode: 403, message: "You are not allow to enter!!!")]
-    #[Route('/{id}', name: 'update_car', methods: ['PUT'])]
-    public function updateCar(
+    #[Route('/{id}', name: 'update_car_put', methods: ['PUT'])]
+    public function updatePut(
         Car                $car,
         Request            $request,
         CarService         $carService,
         UpdateCarRequest   $updateCarRequest,
         CarTransformer     $carTransformer,
-        CarTransfer        $carTransfer,
         ValidatorInterface $validator
     )
     {
@@ -90,7 +90,29 @@ class CarController extends AbstractController
         if (count($error) > 0) {
             throw new ValidatorException(code: Response::HTTP_BAD_REQUEST);
         }
-        $car = $carService->updateCar($car, $carRequest);
+        $car = $carService->updatePut($car, $carRequest);
+        $result = $carTransformer->fromArray($car);
+        return $this->success($result);
+    }
+
+    #[IsGranted('ROLE_ADMIN', statusCode: 403, message: "You are not allow to enter!!!")]
+    #[Route('/{id}', name: 'update_car_patch', methods: ['PATCH'])]
+    public function updatePatch(
+        Car                $car,
+        Request            $request,
+        CarService         $carService,
+        UpdateCarRequest   $updateCarRequest,
+        CarTransformer     $carTransformer,
+        ValidatorInterface $validator
+    )
+    {
+        $requestBody = json_decode($request->getContent(), true);
+        $carRequest = $updateCarRequest->fromArray($requestBody);
+        $error = $validator->validate($carRequest);
+        if (count($error) > 0) {
+            throw new ValidatorException(code: Response::HTTP_BAD_REQUEST);
+        }
+        $car = $carService->updatePatch($car, $carRequest);
         $result = $carTransformer->fromArray($car);
         return $this->success($result);
     }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Transfer;
+namespace App\Mapper;
 
 use App\Entity\Car;
 use App\Entity\User;
@@ -9,7 +9,7 @@ use Symfony\Component\Security\Core\Security;
 use App\Repository\ImageRepository;
 use App\Repository\UserRepository;
 
-class UpdateCarTransfer
+class PutCarRequestToCar
 {
     private ImageRepository $imageRepository;
     private UserRepository $userRepository;

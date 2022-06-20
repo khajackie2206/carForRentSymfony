@@ -5,12 +5,13 @@ namespace App\Service;
 use App\Entity\User;
 use App\Entity\Car;
 use App\Entity\Image;
+use App\Mapper\PatchCarRequestToCar;
+use App\Mapper\PutCarRequestToCar;
 use App\Repository\CarRepository;
 use App\Repository\ImageRepository;
 use App\Repository\UserRepository;
 use App\Request\CarRequest;
 use App\Request\UpdateCarRequest;
-use App\Transfer\UpdateCarTransfer;
 use Doctrine\ORM\EntityNotFoundException;
 
 class CarService
@@ -19,20 +20,23 @@ class CarService
     private ImageService $imageService;
     private UserRepository $userRepository;
     private ImageRepository $imageRepository;
-    private UpdateCarTransfer $updateCarTransfer;
+    private PutCarRequestToCar $putCarRequestToCar;
+    private PatchCarRequestToCar $patchCarRequestToCar;
 
     public function __construct(
         ImageRepository $imageRepository,
         CarRepository $carRepository,
         UserRepository $userRepository,
         ImageService $imageService,
-        UpdateCarTransfer $updateCarTransfer
+        PutCarRequestToCar $putCarRequestToCarEntity,
+        PatchCarRequestToCar $patchCarRequestToCar
     ) {
         $this->carRepository = $carRepository;
         $this->imageService = $imageService;
         $this->userRepository = $userRepository;
         $this->imageRepository = $imageRepository;
-        $this->updateCarTransfer = $updateCarTransfer;
+        $this->putCarRequestToCarEntity = $putCarRequestToCarEntity;
+        $this->patchCarRequestToCar = $patchCarRequestToCar;
     }
 
     public function findAll(CarRequest $carRequest)
@@ -68,10 +72,17 @@ class CarService
         return true;
     }
 
-    public function updateCar(Car $car, UpdateCarRequest $carRequest): Car
+    public function updatePut(Car $car, UpdateCarRequest $carRequest): Car
     {
-         $carUpdate = $this->updateCarTransfer->mapper($car, $carRequest);
+         $carUpdate = $this->putCarRequestToCar->mapper($car, $carRequest);
          $this->carRepository->save($carUpdate);
          return $car;
+    }
+
+    public function updatePatch(Car $car, UpdateCarRequest $carRequest): Car
+    {
+        $carUpdate = $this->patchCarRequestToCar->mapper($car, $carRequest);
+        $this->carRepository->save($carUpdate);
+        return $car;
     }
 }
