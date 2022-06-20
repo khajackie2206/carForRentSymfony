@@ -10,7 +10,6 @@ use App\Request\CarRequest;
 use App\Request\UpdateCarRequest;
 use App\Service\CarService;
 use App\Traits\JsonResponseTrait;
-use App\Transfer\CarTransfer;
 use Symfony\Component\HttpFoundation\Response;
 use App\Transformer\CarTransformer;
 use Symfony\Component\HttpFoundation\Request;
@@ -45,7 +44,7 @@ class CarController extends AbstractController
     }
 
     #[Route('/{id}', name: 'car_detail', methods: 'GET')]
-    public function carDetails(Car $car, CarTransformer $carTransformer)
+    public function carDetails(Car $car, CarTransformer $carTransformer): JsonResponse
     {
         return $this->success($carTransformer->fromArray($car));
     }
@@ -59,7 +58,7 @@ class CarController extends AbstractController
         CarTransformer     $carTransformer,
         AddCarRequestToCar $addCarRequestToCar,
         ValidatorInterface $validator
-    )
+    ): JsonResponse
     {
         $requestBody = json_decode($request->getContent(), true);
         $carRequest = $addCarRequest->fromArray($requestBody);
@@ -82,7 +81,7 @@ class CarController extends AbstractController
         UpdateCarRequest   $updateCarRequest,
         CarTransformer     $carTransformer,
         ValidatorInterface $validator
-    )
+    ): JsonResponse
     {
         $requestBody = json_decode($request->getContent(), true);
         $carRequest = $updateCarRequest->fromArray($requestBody);
@@ -92,6 +91,7 @@ class CarController extends AbstractController
         }
         $car = $carService->updatePut($car, $carRequest);
         $result = $carTransformer->fromArray($car);
+
         return $this->success($result);
     }
 
@@ -104,7 +104,7 @@ class CarController extends AbstractController
         UpdateCarRequest   $updateCarRequest,
         CarTransformer     $carTransformer,
         ValidatorInterface $validator
-    )
+    ): JsonResponse
     {
         $requestBody = json_decode($request->getContent(), true);
         $carRequest = $updateCarRequest->fromArray($requestBody);
@@ -114,12 +114,13 @@ class CarController extends AbstractController
         }
         $car = $carService->updatePatch($car, $carRequest);
         $result = $carTransformer->fromArray($car);
+
         return $this->success($result);
     }
 
     #[IsGranted('ROLE_ADMIN', statusCode: 403, message: "You are not allow to enter!!!")]
     #[Route('/{id}', name: 'remove_car', methods: 'DELETE')]
-    public function removeCar(int $id, CarService $carService)
+    public function removeCar(int $id, CarService $carService): JsonResponse
     {
         $result = $carService->deleteCar($id);
         if ($result) {

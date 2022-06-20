@@ -6,7 +6,7 @@ use App\Entity\Car;
 
 class CarTransformer
 {
-    public function fromArray(Car $car)
+    public function fromArray(Car $car): array
     {
         return [
             'id' => $car->getId(),
@@ -28,6 +28,7 @@ class CarTransformer
         foreach ($cars as $car) {
             $result[] = $this->fromArray($car);
         }
+
         return $result;
     }
 }

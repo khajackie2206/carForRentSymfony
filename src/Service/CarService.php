@@ -24,13 +24,14 @@ class CarService
     private PatchCarRequestToCar $patchCarRequestToCar;
 
     public function __construct(
-        ImageRepository $imageRepository,
-        CarRepository $carRepository,
-        UserRepository $userRepository,
-        ImageService $imageService,
-        PutCarRequestToCar $putCarRequestToCarEntity,
+        ImageRepository      $imageRepository,
+        CarRepository        $carRepository,
+        UserRepository       $userRepository,
+        ImageService         $imageService,
+        PutCarRequestToCar   $putCarRequestToCarEntity,
         PatchCarRequestToCar $patchCarRequestToCar
-    ) {
+    )
+    {
         $this->carRepository = $carRepository;
         $this->imageService = $imageService;
         $this->userRepository = $userRepository;
@@ -39,12 +40,12 @@ class CarService
         $this->patchCarRequestToCar = $patchCarRequestToCar;
     }
 
-    public function findAll(CarRequest $carRequest)
+    public function findAll(CarRequest $carRequest): array
     {
         return $this->carRepository->getAll($carRequest);
     }
 
-    public function getCar(int $id)
+    public function getCar(int $id): Car
     {
         $car = $this->carRepository->find($id);
         if (!$car) {
@@ -74,15 +75,17 @@ class CarService
 
     public function updatePut(Car $car, UpdateCarRequest $carRequest): Car
     {
-         $carUpdate = $this->putCarRequestToCar->mapper($car, $carRequest);
-         $this->carRepository->save($carUpdate);
-         return $car;
+        $carUpdate = $this->putCarRequestToCar->mapper($car, $carRequest);
+        $this->carRepository->save($carUpdate);
+
+        return $car;
     }
 
     public function updatePatch(Car $car, UpdateCarRequest $carRequest): Car
     {
         $carUpdate = $this->patchCarRequestToCar->mapper($car, $carRequest);
         $this->carRepository->save($carUpdate);
+
         return $car;
     }
 }

@@ -3,9 +3,7 @@
 namespace App\Mapper;
 
 use App\Entity\Car;
-use App\Entity\User;
 use App\Request\UpdateCarRequest;
-use Symfony\Component\Security\Core\Security;
 use App\Repository\ImageRepository;
 use App\Repository\UserRepository;
 
@@ -24,15 +22,16 @@ class PutCarRequestToCar
     {
         $createdUser = $this->userRepository->find($updateCarRequest->getCreatedUser());
         $thumbnail = $this->imageRepository->find($updateCarRequest->getThumbnail());
-        $car->setName($updateCarRequest->getName())
-            ->setDescription($updateCarRequest->getDescription())
-            ->setColor($updateCarRequest->getColor())
-            ->setBrand($updateCarRequest->getBrand())
-            ->setPrice($updateCarRequest->getPrice())
-            ->setSeats($updateCarRequest->getSeats())
-            ->setYear($updateCarRequest->getYear())
-            ->setCreatedUser($createdUser)
-            ->setThumbnail($thumbnail);
+        $car->setName($updateCarRequest->getName());
+        $car->setDescription($updateCarRequest->getDescription());
+        $car->setColor($updateCarRequest->getColor());
+        $car->setBrand($updateCarRequest->getBrand());
+        $car->setPrice($updateCarRequest->getPrice());
+        $car->setSeats($updateCarRequest->getSeats());
+        $car->setYear($updateCarRequest->getYear());
+        $car->setCreatedUser($createdUser);
+        $car->setThumbnail($thumbnail);
+
         return $car;
     }
 }

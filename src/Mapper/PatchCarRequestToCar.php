@@ -23,23 +23,23 @@ class PatchCarRequestToCar
     public function mapper(Car $car, UpdateCarRequest $updateCarRequest): Car
     {
 
-        $createdUserID = $updateCarRequest->getCreatedUser();
-        if ($createdUserID != null) {
-            $createdUser = $this->userRepository->find($createdUserID);
+        $createdUserId = $updateCarRequest->getCreatedUser();
+        if ($createdUserId != null) {
+            $createdUser = $this->userRepository->find($createdUserId);
             $car->setCreatedUser($createdUser);
         }
-        $thumbnailID = $updateCarRequest->getThumbnail();
-        if ($thumbnailID != null) {
-            $thumbnail = $this->imageRepository->find($thumbnailID);
+        $thumbnailId = $updateCarRequest->getThumbnail();
+        if ($thumbnailId != null) {
+            $thumbnail = $this->imageRepository->find($thumbnailId);
             $car->setThumbnail($thumbnail);
         }
-        $car->setName($updateCarRequest->getName() ?? $car->getName())
-            ->setDescription($updateCarRequest->getDescription() ?? $car->getDescription())
-            ->setColor($updateCarRequest->getColor() ?? $car->getColor())
-            ->setBrand($updateCarRequest->getBrand() ?? $car->getBrand())
-            ->setPrice($updateCarRequest->getPrice() ?? $car->getPrice())
-            ->setSeats($updateCarRequest->getSeats() ?? $car->getSeats())
-            ->setYear($updateCarRequest->getYear() ?? $car->getYear());
+        $car->setName($updateCarRequest->getName() ?? $car->getName());
+        $car->setDescription($updateCarRequest->getDescription() ?? $car->getDescription());
+        $car->setColor($updateCarRequest->getColor() ?? $car->getColor());
+        $car->setBrand($updateCarRequest->getBrand() ?? $car->getBrand());
+        $car->setPrice($updateCarRequest->getPrice() ?? $car->getPrice());
+        $car->setSeats($updateCarRequest->getSeats() ?? $car->getSeats());
+        $car->setYear($updateCarRequest->getYear() ?? $car->getYear());
 
         return $car;
     }

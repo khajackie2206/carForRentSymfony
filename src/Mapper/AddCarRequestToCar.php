@@ -35,6 +35,7 @@ class AddCarRequestToCar
         $car->setPrice($addCarRequest->getPrice());
         $car->setCreatedUser($user);
         $car->setThumbnail($this->imageRepository->find($addCarRequest->getThumbnail()));
+
         return $car;
     }
 }

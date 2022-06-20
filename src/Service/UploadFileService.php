@@ -34,6 +34,7 @@ class UploadFileService
         }
         $fileName = 'images/' . $fileName;
         $image = $this->getImage($fileName);
+
         return $image;
     }
 
@@ -42,6 +43,7 @@ class UploadFileService
         $image = new Image();
         $image->setPath($fileName);
         $this->imageService->addImage($image);
+
         return $image;
     }
 }
