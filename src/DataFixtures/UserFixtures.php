@@ -29,7 +29,7 @@ class UserFixtures extends Fixture
             $user->setPassword($this->passwordHasher->hashPassword($user, $password));
             $user->setRoles($roles);
             $user->setName($name);
-            $user->setCreatedAt(new \DateTimeImmutable(false));
+            $user->setCreatedAt(new() \DateTimeImmutable(false));
             $manager->persist($user);
             $this->addReference('user_' . $id, $user);
         }

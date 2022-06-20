@@ -18,7 +18,7 @@ class ImageFixtures extends Fixture
         foreach ($this->getImage() as [$id, $path]) {
             $image = new Image();
             $image->setPath($path);
-            $image->setCreatedAt(new \DateTimeImmutable(false));
+            $image->setCreatedAt(new() \DateTimeImmutable(false));
             $manager->persist($image);
             $this->addReference('image_' . $id, $image);
         }

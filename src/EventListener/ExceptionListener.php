@@ -58,6 +58,7 @@ class ExceptionListener
                 $message = self::BAD_REQUEST;
                 $statusCode = Response::HTTP_BAD_REQUEST;
                 break;
+
             case UnauthorizedHttpException::class:
                 $message = self::UNAUTHORIZED;
                 $statusCode = Response::HTTP_UNAUTHORIZED;
@@ -73,5 +74,4 @@ class ExceptionListener
     {
         return $this->environment === static::DEV_ENV;
     }
-
 }

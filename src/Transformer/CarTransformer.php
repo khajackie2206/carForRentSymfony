@@ -17,8 +17,8 @@ class CarTransformer
             'price' => $car->getPrice(),
             'seats' => $car->getSeats(),
             'year' => $car->getYear(),
-            'thumbnail' => $car->getThumbnail()->getPath(),
-            'createdUser' => $car->getCreatedUser()->getName()
+            'thumbnail' => $car->getThumbnail()->getId(),
+            'createdUser' => $car->getCreatedUser()->getId()
         ];
     }
 

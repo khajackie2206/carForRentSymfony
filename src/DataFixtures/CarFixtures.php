@@ -34,7 +34,7 @@ class CarFixtures extends Fixture implements DependentFixtureInterface
                 ->setYear($year)
                 ->setThumbnail($imagePath)
                 ->setCreatedUser($createdUser)
-                ->setCreatedAt(new \DateTimeImmutable(false));
+                ->setCreatedAt(new() \DateTimeImmutable(false));
             $manager->persist($car);
         }
         $manager->flush();

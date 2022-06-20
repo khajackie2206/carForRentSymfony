@@ -2,22 +2,39 @@
 
 namespace App\Transfer;
 
+use App\Entity\User;
+use Symfony\Component\Security\Core\Security;
 use App\Entity\Car;
-use Symfony\Component\HttpFoundation\Request;
+use App\Repository\ImageRepository;
+use App\Request\AddCarRequest;
 
 class CarTransfer
 {
-    public function transfer(Request $request): Car
+    private ImageRepository $imageRepository;
+    private Security $security;
+
+    public function __construct(ImageRepository $imageRepository, Security $security)
     {
-        $car = new Car();
-        $car->setName($request->get('name'));
-        $car->setDescription($request->get('description'));
-        $car->setColor($request->get('color'));
-        $car->setBrand($request->get('brand'));
-        $car->setSeats($request->get('seat'));
-        $car->setYear($request->get('year'));
-        $car->setPrice($request->get('price'));
-        return $car;
+        $this->imageRepository = $imageRepository;
+        $this->security = $security;
     }
 
+    public function transfer(AddCarRequest $addCarRequest): Car
+    {
+        /**
+         * @var User $user ;
+         */
+        $user = $this->security->getUser();
+        $car = new Car();
+        $car->setName($addCarRequest->getName());
+        $car->setDescription($addCarRequest->getDescription());
+        $car->setColor($addCarRequest->getColor());
+        $car->setBrand($addCarRequest->getBrand());
+        $car->setSeats($addCarRequest->getSeats());
+        $car->setYear($addCarRequest->getYear());
+        $car->setPrice($addCarRequest->getPrice());
+        $car->setCreatedUser($user);
+        $car->setThumbnail($this->imageRepository->find($addCarRequest->getThumbnail()));
+        return $car;
+    }
 }

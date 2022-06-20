@@ -3,14 +3,18 @@
 namespace App\Controller\API;
 
 use App\Entity\Car;
+use App\Entity\User;
+use App\Request\AddCarRequest;
 use App\Request\CarRequest;
+use App\Request\UpdateCarRequest;
 use App\Service\CarService;
-use App\Service\UploadFileService;
 use App\Traits\JsonResponseTrait;
 use App\Transfer\CarTransfer;
+use Symfony\Component\HttpFoundation\Response;
 use App\Transformer\CarTransformer;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Validator\Exception\ValidatorException;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
@@ -45,22 +49,61 @@ class CarController extends AbstractController
         return $this->success($carTransformer->fromArray($car));
     }
 
-    #[IsGranted('ROLE_ADMIN')]
+    #[IsGranted('ROLE_ADMIN', statusCode: 403, message: "You are not allow to enter!!!")]
     #[Route('/', name: 'add_car', methods: 'POST')]
     public function addCar(
-        Request           $request,
-        CarService        $carService,
-        CarTransformer    $carTransformer,
-        UploadFileService $uploadFileService,
-        CarTransfer       $carTransfer
+        Request            $request,
+        CarService         $carService,
+        AddCarRequest      $addCarRequest,
+        CarTransformer     $carTransformer,
+        CarTransfer        $carTransfer,
+        ValidatorInterface $validator
     )
     {
-        $userID = $this->getUser()->getID();
-        $car = $carTransfer->transfer($request);
-        $file = $request->files->get('thumbnail');
-        $imagePath = $uploadFileService->upload($file);
-        $carService->addCar($userID, $imagePath, $car);
+        $requestBody = json_decode($request->getContent(), true);
+        $carRequest = $addCarRequest->fromArray($requestBody);
+        $error = $validator->validate($carRequest);
+        if (count($error) > 0) {
+            throw new ValidatorException(code: Response::HTTP_BAD_REQUEST);
+        }
+        $car = $carTransfer->transfer($carRequest);
+        $result = $carTransformer->fromArray($carService->addCar($car));
+
+        return $this->success($result);
+    }
+
+    #[IsGranted('ROLE_ADMIN', statusCode: 403, message: "You are not allow to enter!!!")]
+    #[Route('/{id}', name: 'update_car', methods: ['PUT'])]
+    public function updateCar(
+        Car                $car,
+        Request            $request,
+        CarService         $carService,
+        UpdateCarRequest   $updateCarRequest,
+        CarTransformer     $carTransformer,
+        CarTransfer        $carTransfer,
+        ValidatorInterface $validator
+    )
+    {
+        $requestBody = json_decode($request->getContent(), true);
+        $carRequest = $updateCarRequest->fromArray($requestBody);
+        $error = $validator->validate($carRequest);
+        if (count($error) > 0) {
+            throw new ValidatorException(code: Response::HTTP_BAD_REQUEST);
+        }
+        $car = $carService->updateCar($car, $carRequest);
         $result = $carTransformer->fromArray($car);
         return $this->success($result);
+    }
+
+    #[IsGranted('ROLE_ADMIN', statusCode: 403, message: "You are not allow to enter!!!")]
+    #[Route('/{id}', name: 'remove_car', methods: 'DELETE')]
+    public function removeCar(int $id, CarService $carService)
+    {
+        $result = $carService->deleteCar($id);
+        if ($result) {
+            return $this->success(["message" => "Car deleted"]);
+        }
+
+        return $this->error("Something went wrong !!!!");
     }
 }

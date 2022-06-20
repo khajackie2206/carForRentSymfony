@@ -5,7 +5,7 @@ namespace App\Entity;
 use App\Repository\CarRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: CarRepository::class)]
@@ -16,45 +16,66 @@ class Car extends BaseEntity
     #[ORM\Column(type: 'integer')]
     private $id;
 
+    /**
+     * @Assert\NotBlank
+     */
     #[ORM\Column(type: 'string', length: 255)]
     private $name;
 
+    /**
+     * @Assert\NotBlank
+     */
     #[ORM\Column(type: 'string', length: 255)]
     private $description;
 
+    /**
+     * @Assert\NotBlank
+     */
     #[ORM\Column(type: 'string', length: 255)]
     private $color;
 
+    /**
+     * @Assert\NotBlank
+     */
     #[ORM\Column(type: 'string', length: 255)]
     private $brand;
 
+    /**
+     * @Assert\NotBlank
+     */
     #[ORM\Column(type: 'float')]
     private $price;
 
+    /**
+     * @Assert\NotBlank
+     */
     #[ORM\Column(type: 'integer')]
     private $seats;
 
+    /**
+     * @Assert\NotBlank
+     */
     #[ORM\Column(type: 'integer')]
     private $year;
 
     #[ORM\Column(type: 'datetime_immutable')]
     private $createdAt;
 
-    #[ORM\OneToOne(inversedBy: 'car', targetEntity: Image::class, cascade: ['persist', 'remove'])]
+    #[ORM\OneToOne(inversedBy: 'car', targetEntity: Image::class , cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
     private $thumbnail;
 
-    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'cars')]
+    #[ORM\ManyToOne(targetEntity: User::class , inversedBy: 'cars')]
     #[ORM\JoinColumn(nullable: false)]
     private $createdUser;
 
-    #[ORM\OneToMany(mappedBy: 'car', targetEntity: Rent::class)]
+    #[ORM\OneToMany(mappedBy: 'car', targetEntity: Rent::class )]
     private $rents;
 
     public function __construct()
     {
         $this->rents = new ArrayCollection();
-        $this->createdAt = new \DateTimeImmutable();
+        $this->createdAt = new() \DateTimeImmutable();
     }
 
     public function getId(): ?int
@@ -151,7 +172,7 @@ class Car extends BaseEntity
         return $this->createdAt;
     }
 
-    public function setCreatedAt(?\DateTimeImmutable $createdAt): self
+    public function setCreatedAt(? \DateTimeImmutable $createdAt) : self
     {
         $this->createdAt = $createdAt;
         return $this;
