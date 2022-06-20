@@ -5,6 +5,8 @@ namespace App\Repository;
 use App\Entity\Car;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use App\Request\CarRequest;
+use Doctrine\ORM\QueryBuilder;
 
 /**
  * @extends ServiceEntityRepository<Car>
@@ -14,53 +16,23 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method Car[]    findAll()
  * @method Car[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class CarRepository extends ServiceEntityRepository
+class CarRepository extends BaseRepository
 {
+    const CAR_ALIAS = 'p';
+
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Car::class);
+        parent::__construct($registry, Car::class, static::CAR_ALIAS);
     }
 
-    public function add(Car $entity, bool $flush = false): void
+    public function getAll(CarRequest $carRequest): array
     {
-        $this->getEntityManager()->persist($entity);
-
-        if ($flush) {
-            $this->getEntityManager()->flush();
-        }
+        $cars = $this->createQueryBuilder(self::CAR_ALIAS);
+        $cars = $this->filter($cars, 'color', $carRequest->getColor());
+        $cars = $this->moreFilter($cars, 'brand', $carRequest->getBrand());
+        $cars = $this->moreFilter($cars, 'seats', $carRequest->getSeats());
+        $cars = $this->orderBy($cars, $carRequest->getOrderType(), $carRequest->getOrderBy());
+        $cars->setMaxResults($carRequest->getLimit())->setFirstResult(0);
+        return $cars->getQuery()->getResult();
     }
-
-    public function remove(Car $entity, bool $flush = false): void
-    {
-        $this->getEntityManager()->remove($entity);
-
-        if ($flush) {
-            $this->getEntityManager()->flush();
-        }
-    }
-
-//    /**
-//     * @return Car[] Returns an array of Car objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('c')
-//            ->andWhere('c.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('c.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
-
-//    public function findOneBySomeField($value): ?Car
-//    {
-//        return $this->createQueryBuilder('c')
-//            ->andWhere('c.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
 }

@@ -5,17 +5,15 @@ namespace App\Controller\API;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Traits\JsonResponseTrait;
 
-class UserController extends AbstractController
+class ProfileController extends AbstractController
 {
+    use JsonResponseTrait;
+
     #[Route('/api/user', name: 'app_api_user')]
     public function index(): JsonResponse
     {
-        return $this->json([
-            'status' => 'success',
-            'data' => [
-                'message' => 'This is role_user',
-            ]
-        ]);
+        return $this->success(['message' => 'This is role User']);
     }
 }

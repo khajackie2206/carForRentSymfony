@@ -7,27 +7,22 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Traits\JsonResponseTrait;
 
 class LoginController extends AbstractController
 {
+    use JsonResponseTrait;
+
     #[Route('/api/login', name: 'app_api_login')]
     public function login(JWTTokenManagerInterface $tokenManager): JsonResponse
     {
         $user = $this->getUser();
         if ($user === null) {
-            return $this->json([
-                'status' => 'error',
-                'message' => 'Unauthorized',
-            ], Response::HTTP_UNAUTHORIZED);
+            $message = 'Unauthorized';
+            return $this->error($message, Response::HTTP_UNAUTHORIZED);
         }
         $token = $tokenManager->create($user);
-        return $this->json([
-            'status' => 'success',
-            'data' => [
-                'user' => $user->getUserIdentifier(),
-                'roles' =>  $user->getRoles(),
-                'token' => $token
-            ],
-        ]);
+        $data = ['token' => $token];
+        return $this->success($data);
     }
 }
