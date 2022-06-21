@@ -19,12 +19,9 @@ services:
             - '../src/DependencyInjection/'
             - '../src/Entity/'
             - '../src/Kernel.php'
-    App\Service\UploadFileService:
-        arguments:
-            $targetDirectory: '%brochures_directory%'
-    App\EventListener\ExceptionListener:
-       tags:
-           - { name: kernel.event_listener, event: kernel.exception }
+#    App\EventListener\ExceptionListener:
+#       tags:
+#           - { name: kernel.event_listener, event: kernel.exception }
     acme_api.event.authentication_failure_listener:
         class: App\EventListener\AuthenticationFailureListener
         tags:
@@ -37,5 +34,16 @@ services:
         class: App\EventListener\JWTNotFoundListener
         tags:
             - { name: kernel.event_listener, event: lexik_jwt_authentication.on_jwt_not_found, method: onJWTNotFound }
+    Aws\S3\S3Client:
+        arguments:
+            - version: 'latest'
+              region: '%env(S3_BUCKET_REGION)%'
+              credentials:
+                  key: '%env(S3_ACCESS_KEY_ID)%'
+                  secret: '%env(S3_SECRET_ACCESS_KEY)%'
+    App\Manager\FileManager:
+        arguments:
+            $targetDirectory: '%brochures_directory%'
+            $bucketName: '%env(S3_BUCKET_NAME)%'
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

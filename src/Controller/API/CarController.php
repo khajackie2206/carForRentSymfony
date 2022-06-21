@@ -48,7 +48,7 @@ class CarController extends AbstractController
         return $this->success($carTransformer->fromArray($car));
     }
 
-    #[IsGranted('ROLE_ADMIN', statusCode: 403, message: "You are not allow to enter!!!")]
+    #[IsGranted('ROLE_ADMIN', statusCode: 403, message: "You are not allowed to enter!!!")]
     #[Route('/', name: 'add_car', methods: 'POST')]
     public function addCar(
         Request            $request,
@@ -61,8 +61,8 @@ class CarController extends AbstractController
     {
         $requestBody = json_decode($request->getContent(), true);
         $carRequest = $addCarRequest->fromArray($requestBody);
-        $error = $validator->validate($carRequest);
-        if (count($error) > 0) {
+        $errors = $validator->validate($carRequest);
+        if (count($errors) > 0) {
             throw new ValidatorException(code: Response::HTTP_BAD_REQUEST);
         }
         $car = $addCarRequestToCar->transfer($carRequest);
@@ -71,7 +71,7 @@ class CarController extends AbstractController
         return $this->success($result);
     }
 
-    #[IsGranted('ROLE_ADMIN', statusCode: 403, message: "You are not allow to enter!!!")]
+    #[IsGranted('ROLE_ADMIN', statusCode: 403, message: "You are not allowed to enter!!!")]
     #[Route('/{id}', name: 'update_car_put', methods: ['PUT'])]
     public function updatePut(
         Car                $car,
@@ -84,8 +84,8 @@ class CarController extends AbstractController
     {
         $requestBody = json_decode($request->getContent(), true);
         $carRequest = $updateCarRequest->fromArray($requestBody);
-        $error = $validator->validate($carRequest);
-        if (count($error) > 0) {
+        $errors = $validator->validate($carRequest);
+        if (count($errors) > 0) {
             throw new ValidatorException(code: Response::HTTP_BAD_REQUEST);
         }
         $car = $carService->updatePut($car, $carRequest);
@@ -94,7 +94,7 @@ class CarController extends AbstractController
         return $this->success($result);
     }
 
-    #[IsGranted('ROLE_ADMIN', statusCode: 403, message: "You are not allow to enter!!!")]
+    #[IsGranted('ROLE_ADMIN', statusCode: 403, message: "You are not allowed to enter!!!")]
     #[Route('/{id}', name: 'update_car_patch', methods: ['PATCH'])]
     public function updatePatch(
         Car                $car,
@@ -107,8 +107,8 @@ class CarController extends AbstractController
     {
         $requestBody = json_decode($request->getContent(), true);
         $carRequest = $updateCarRequest->fromArray($requestBody);
-        $error = $validator->validate($carRequest);
-        if (count($error) > 0) {
+        $errors = $validator->validate($carRequest);
+        if (count($errors) > 0) {
             throw new ValidatorException(code: Response::HTTP_BAD_REQUEST);
         }
         $car = $carService->updatePatch($car, $carRequest);
@@ -117,15 +117,15 @@ class CarController extends AbstractController
         return $this->success($result);
     }
 
-    #[IsGranted('ROLE_ADMIN', statusCode: 403, message: "You are not allow to enter!!!")]
+    #[IsGranted('ROLE_ADMIN', statusCode: 403, message: "You are not allowed to enter!!!")]
     #[Route('/{id}', name: 'remove_car', methods: 'DELETE')]
     public function removeCar(int $id, CarService $carService): JsonResponse
     {
         $result = $carService->deleteCar($id);
         if ($result) {
-            return $this->success(["message" => "Car deleted"]);
+            return $this->success([],Response::HTTP_ACCEPTED);
         }
 
-        return $this->error("Something went wrong !!!!");
+        return $this->error(Response::HTTP_BAD_REQUEST);
     }
 }
