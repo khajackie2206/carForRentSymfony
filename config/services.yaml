@@ -22,9 +22,9 @@ services:
     App\Service\UploadFileService:
         arguments:
             $targetDirectory: '%brochures_directory%'
-#    App\EventListener\ExceptionListener:
-#       tags:
-#           - { name: kernel.event_listener, event: kernel.exception }
+    App\EventListener\ExceptionListener:
+       tags:
+           - { name: kernel.event_listener, event: kernel.exception }
     acme_api.event.authentication_failure_listener:
         class: App\EventListener\AuthenticationFailureListener
         tags:

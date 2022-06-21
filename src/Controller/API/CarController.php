@@ -3,7 +3,6 @@
 namespace App\Controller\API;
 
 use App\Entity\Car;
-use App\Entity\User;
 use App\Mapper\AddCarRequestToCar;
 use App\Request\AddCarRequest;
 use App\Request\CarRequest;
