@@ -5,6 +5,11 @@
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
     brochures_directory: '%kernel.project_dir%/public/images'
+    amazon.s3.key: '%env(S3_ACCESS_KEY_ID)%'
+    amazon.s3.secret: '%env(S3_SECRET_ACCESS_KEY)%'
+    amazon.s3.bucket: '%env(S3_BUCKET_NAME)%'
+    amazon.s3.region: '%env(S3_BUCKET_REGION)%'
+    amazon.s3.version: 'latest'
 services:
     # default configuration for services in *this* file
     _defaults:
@@ -19,9 +24,7 @@ services:
             - '../src/DependencyInjection/'
             - '../src/Entity/'
             - '../src/Kernel.php'
-    App\Service\UploadFileService:
-        arguments:
-            $targetDirectory: '%brochures_directory%'
+
     App\EventListener\ExceptionListener:
        tags:
            - { name: kernel.event_listener, event: kernel.exception }
@@ -37,5 +40,24 @@ services:
         class: App\EventListener\JWTNotFoundListener
         tags:
             - { name: kernel.event_listener, event: lexik_jwt_authentication.on_jwt_not_found, method: onJWTNotFound }
+
+    acme.imagine.cache.resolver.aws_s3_resolver:
+        class: Liip\ImagineBundle\Imagine\Cache\Resolver\AwsS3Resolver
+        arguments:
+            - "@acme.amazon_s3"
+            - "%amazon.s3.bucket%"
+        tags:
+            - { name: "liip_imagine.cache.resolver", resolver: "aws_s3_resolver" }
+    App\Service\ImageService:
+        arguments:
+            $targetDirectory: '%brochures_directory%'
+    acme.amazon_s3:
+        class: Aws\S3\S3Client
+        factory: [ Aws\S3\S3Client, factory ]
+        arguments:
+            - credentials: { key: "%amazon.s3.key%", secret: "%amazon.s3.secret%" }
+              region: "%amazon.s3.region%"
+              version: "%amazon.s3.version%"
+
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
