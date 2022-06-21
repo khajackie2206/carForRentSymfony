@@ -28,7 +28,7 @@ class CarService
         CarRepository        $carRepository,
         UserRepository       $userRepository,
         ImageService         $imageService,
-        PutCarRequestToCar   $putCarRequestToCarEntity,
+        PutCarRequestToCar   $putCarRequestToCar,
         PatchCarRequestToCar $patchCarRequestToCar
     )
     {
@@ -36,7 +36,7 @@ class CarService
         $this->imageService = $imageService;
         $this->userRepository = $userRepository;
         $this->imageRepository = $imageRepository;
-        $this->putCarRequestToCarEntity = $putCarRequestToCarEntity;
+        $this->putCarRequestToCar = $putCarRequestToCar;
         $this->patchCarRequestToCar = $patchCarRequestToCar;
     }
 
