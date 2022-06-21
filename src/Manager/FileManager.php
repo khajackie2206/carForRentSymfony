@@ -18,7 +18,13 @@ class FileManager
     {
         $this->targetDirectory = $targetDirectory;
         $this->bucketName = $bucketName;
-        $this->s3Client = $s3Client;
+        $this->s3Client = new S3Client(
+            [
+                'version' => $_ENV['VERSION'],
+                'region' => $_ENV['S3_BUCKET_REGION'],
+                'credentials' => ['key' => $_ENV['S3_ACCESS_KEY_ID'], 'secret' => $_ENV['S3_SECRET_ACCESS_KEY']]
+            ]
+        );
         $this->slugger = $slugger;
     }
 
