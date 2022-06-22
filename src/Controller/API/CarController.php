@@ -14,7 +14,6 @@ use Symfony\Component\HttpFoundation\Response;
 use App\Transformer\CarTransformer;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Validator\Exception\ValidatorException;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
@@ -27,16 +26,21 @@ class CarController extends AbstractController
 
     #[Route('/', name: 'list_car', methods: 'GET')]
     public function index(
-        Request            $request,
-        CarRequest         $carRequest,
-        ValidatorInterface $validator,
-        CarTransformer     $carTransformer,
-        CarService         $carService
+        Request              $request,
+        CarRequest           $carRequest,
+        ValidatorInterface   $validator,
+        CarTransformer       $carTransformer,
+        ValidatorTransformer $validatorTransformer,
+        CarService           $carService
     ): JsonResponse
     {
         $query = $request->query->all();
         $carRequest = $carRequest->fromArray($query);
-        $validator->validate($carRequest);
+        $errors = $validator->validate($carRequest);
+        if (count($errors) > 0) {
+            $errorsTransformer = $validatorTransformer->toArray($errors);
+            return $this->error($errorsTransformer);
+        }
         $cars = $carService->findAll($carRequest);
         $result = $carTransformer->toArrayList($cars);
 
