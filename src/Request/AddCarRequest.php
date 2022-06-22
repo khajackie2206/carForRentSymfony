@@ -17,15 +17,15 @@ class AddCarRequest extends BaseRequest
     #[Assert\Type('string')]
     private $brand;
 
-    #[Assert\Type('float', message: 'price is invalid!!')]
+    #[Assert\Type('numeric', message: 'price is invalid!!')]
     private $price;
 
     #[Assert\Type('string')]
     private $description;
 
-    #[Assert\Type('integer', message: 'seats is invalid!!')]
+    #[Assert\Type('integer')]
     #[Assert\Choice(
-        choices: self::SEATS_LIST ,
+        choices: self::SEATS_LIST,
     )]
     private $seats;
 
@@ -181,6 +181,4 @@ class AddCarRequest extends BaseRequest
     {
         $this->thumbnail = $thumbnail;
     }
-
-
 }

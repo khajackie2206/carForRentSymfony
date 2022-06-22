@@ -17,8 +17,8 @@ class UpdateCarRequest extends BaseRequest
     #[Assert\Type('string')]
     private $brand;
 
-    #[Assert\Type('float')]
-    private ?float $price = null;
+    #[Assert\Type('numeric', message: 'price is invalid!!')]
+    private $price ;
 
     #[Assert\Type('string')]
     private $description;
@@ -57,22 +57,6 @@ class UpdateCarRequest extends BaseRequest
     /**
      * @return mixed
      */
-    public function getDescription()
-    {
-        return $this->description;
-    }
-
-    /**
-     * @param mixed $description
-     */
-    public function setDescription($description): void
-    {
-        $this->description = $description;
-    }
-
-    /**
-     * @return mixed
-     */
     public function getColor()
     {
         return $this->color;
@@ -102,6 +86,37 @@ class UpdateCarRequest extends BaseRequest
         $this->brand = $brand;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+    /**
+     * @param mixed $price
+     */
+    public function setPrice($price): void
+    {
+        $this->price = $price;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param mixed $description
+     */
+    public function setDescription($description): void
+    {
+        $this->description = $description;
+    }
 
     /**
      * @return mixed
@@ -117,22 +132,6 @@ class UpdateCarRequest extends BaseRequest
     public function setSeats($seats): void
     {
         $this->seats = $seats;
-    }
-
-    /**
-     * @return float
-     */
-    public function getPrice(): ?float
-    {
-        return $this->price;
-    }
-
-    /**
-     * @param float $price
-     */
-    public function setPrice(?float $price): void
-    {
-        $this->price = $price;
     }
 
     /**
