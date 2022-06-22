@@ -17,25 +17,25 @@ class AddCarRequest extends BaseRequest
     #[Assert\Type('string')]
     private $brand;
 
-    #[Assert\Type('float')]
-    private float $price;
+    #[Assert\Type('float', message: 'price is invalid!!')]
+    private $price;
 
     #[Assert\Type('string')]
     private $description;
 
-    #[Assert\Type('integer')]
+    #[Assert\Type('integer', message: 'seats is invalid!!')]
     #[Assert\Choice(
         choices: self::SEATS_LIST ,
     )]
     private $seats;
 
-    #[Assert\Type('integer')]
+    #[Assert\Type('integer', message: 'Year is invalid!!')]
     private $year;
 
-    #[Assert\Type('integer')]
+    #[Assert\Type('integer', message: 'Created user is invalid!!')]
     private $createdUser;
 
-    #[Assert\Type('integer')]
+    #[Assert\Type('integer', message: 'Thumbnail is invalid!!')]
     private $thumbnail;
 
     /**
@@ -52,22 +52,6 @@ class AddCarRequest extends BaseRequest
     public function setName($name): void
     {
         $this->name = $name;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getDescription()
-    {
-        return $this->description;
-    }
-
-    /**
-     * @param mixed $description
-     */
-    public function setDescription($description): void
-    {
-        $this->description = $description;
     }
 
     /**
@@ -102,6 +86,37 @@ class AddCarRequest extends BaseRequest
         $this->brand = $brand;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+    /**
+     * @param mixed $price
+     */
+    public function setPrice($price): void
+    {
+        $this->price = $price;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param mixed $description
+     */
+    public function setDescription($description): void
+    {
+        $this->description = $description;
+    }
 
     /**
      * @return mixed
@@ -117,22 +132,6 @@ class AddCarRequest extends BaseRequest
     public function setSeats($seats): void
     {
         $this->seats = $seats;
-    }
-
-    /**
-     * @return float
-     */
-    public function getPrice(): float
-    {
-        return $this->price;
-    }
-
-    /**
-     * @param float $price
-     */
-    public function setPrice(float $price): void
-    {
-        $this->price = $price;
     }
 
     /**
@@ -182,4 +181,6 @@ class AddCarRequest extends BaseRequest
     {
         $this->thumbnail = $thumbnail;
     }
+
+
 }

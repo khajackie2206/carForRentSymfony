@@ -9,6 +9,7 @@ use App\Request\CarRequest;
 use App\Request\UpdateCarRequest;
 use App\Service\CarService;
 use App\Traits\JsonResponseTrait;
+use App\Transformer\ValidatorTransformer;
 use Symfony\Component\HttpFoundation\Response;
 use App\Transformer\CarTransformer;
 use Symfony\Component\HttpFoundation\Request;
@@ -56,6 +57,7 @@ class CarController extends AbstractController
         AddCarRequest      $addCarRequest,
         CarTransformer     $carTransformer,
         AddCarRequestToCar $addCarRequestToCar,
+        ValidatorTransformer $validatorTransformer,
         ValidatorInterface $validator
     ): JsonResponse
     {
@@ -63,7 +65,8 @@ class CarController extends AbstractController
         $carRequest = $addCarRequest->fromArray($requestBody);
         $errors = $validator->validate($carRequest);
         if (count($errors) > 0) {
-            throw new ValidatorException(code: Response::HTTP_BAD_REQUEST);
+                $errorsTransformer = $validatorTransformer->toArray($errors);
+                return $this->error($errorsTransformer);
         }
         $car = $addCarRequestToCar->transfer($carRequest);
         $result = $carTransformer->fromArray($carService->addCar($car));
@@ -123,7 +126,7 @@ class CarController extends AbstractController
     {
         $result = $carService->deleteCar($id);
         if ($result) {
-            return $this->success([],Response::HTTP_ACCEPTED);
+            return $this->success([],Response::HTTP_NO_CONTENT);
         }
 
         return $this->error(Response::HTTP_BAD_REQUEST);

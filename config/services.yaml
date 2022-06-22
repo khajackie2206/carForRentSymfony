@@ -4,46 +4,47 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
-    brochures_directory: '%kernel.project_dir%/public/images'
+  brochures_directory: '%kernel.project_dir%/public/images/'
+  s3url: '%env(S3_URL)%'
 services:
-    # default configuration for services in *this* file
-    _defaults:
-        autowire: true      # Automatically injects dependencies in your services.
-        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+  # default configuration for services in *this* file
+  _defaults:
+    autowire: true      # Automatically injects dependencies in your services.
+    autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
 
-    # makes classes in src/ available to be used as services
-    # this creates a service per class whose id is the fully-qualified class name
-    App\:
-        resource: '../src/'
-        exclude:
-            - '../src/DependencyInjection/'
-            - '../src/Entity/'
-            - '../src/Kernel.php'
-#    App\EventListener\ExceptionListener:
-#       tags:
-#           - { name: kernel.event_listener, event: kernel.exception }
-    acme_api.event.authentication_failure_listener:
-        class: App\EventListener\AuthenticationFailureListener
-        tags:
-            - { name: kernel.event_listener, event: lexik_jwt_authentication.on_authentication_failure, method: onAuthenticationFailureResponse }
-    acme_api.event.jwt_invalid_listener:
-        class: App\EventListener\JWTInvalidListener
-        tags:
-            - { name: kernel.event_listener, event: lexik_jwt_authentication.on_jwt_invalid, method: onJWTInvalid }
-    acme_api.event.jwt_notfound_listener:
-        class: App\EventListener\JWTNotFoundListener
-        tags:
-            - { name: kernel.event_listener, event: lexik_jwt_authentication.on_jwt_not_found, method: onJWTNotFound }
-    Aws\S3\S3Client:
-        arguments:
-            - version: 'latest'
-              region: '%env(S3_BUCKET_REGION)%'
-              credentials:
-                  key: '%env(S3_ACCESS_KEY_ID)%'
-                  secret: '%env(S3_SECRET_ACCESS_KEY)%'
-    App\Manager\FileManager:
-        arguments:
-            $targetDirectory: '%brochures_directory%'
-            $bucketName: '%env(S3_BUCKET_NAME)%'
-    # add more service definitions when explicit configuration is needed
-    # please note that last definitions always *replace* previous ones
+  # makes classes in src/ available to be used as services
+  # this creates a service per class whose id is the fully-qualified class name
+  App\:
+    resource: '../src/'
+    exclude:
+      - '../src/DependencyInjection/'
+      - '../src/Entity/'
+      - '../src/Kernel.php'
+  #    App\EventListener\ExceptionListener:
+  #       tags:
+  #           - { name: kernel.event_listener, event: kernel.exception }
+  acme_api.event.authentication_failure_listener:
+    class: App\EventListener\AuthenticationFailureListener
+    tags:
+      - { name: kernel.event_listener, event: lexik_jwt_authentication.on_authentication_failure, method: onAuthenticationFailureResponse }
+  acme_api.event.jwt_invalid_listener:
+    class: App\EventListener\JWTInvalidListener
+    tags:
+      - { name: kernel.event_listener, event: lexik_jwt_authentication.on_jwt_invalid, method: onJWTInvalid }
+  acme_api.event.jwt_notfound_listener:
+    class: App\EventListener\JWTNotFoundListener
+    tags:
+      - { name: kernel.event_listener, event: lexik_jwt_authentication.on_jwt_not_found, method: onJWTNotFound }
+  Aws\S3\S3Client:
+    arguments:
+      - version: 'latest'
+        region: '%env(S3_BUCKET_REGION)%'
+        credentials:
+          key: '%env(S3_ACCESS_KEY_ID)%'
+          secret: '%env(S3_SECRET_ACCESS_KEY)%'
+  App\Manager\FileManager:
+    arguments:
+         $targetDirectory: '%brochures_directory%'
+         $bucketName: '%env(S3_BUCKET_NAME)%'
+  # add more service definitions when explicit configuration is needed
+  # please note that last definitions always *replace* previous ones
