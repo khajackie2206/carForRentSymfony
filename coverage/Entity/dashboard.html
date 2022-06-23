@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Dashboard for /var/www/CarForRentSymfony/src/Entity</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../_css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="../_css/nv.d3.min.css" rel="stylesheet" type="text/css">
+  <link href="../_css/style.css" rel="stylesheet" type="text/css">
+  <link href="../_css/custom.css" rel="stylesheet" type="text/css">
+ </head>
+ <body>
+  <header>
+   <div class="container-fluid">
+    <div class="row">
+     <div class="col-md-12">
+      <nav aria-label="breadcrumb">
+       <ol class="breadcrumb">
+         <li class="breadcrumb-item"><a href="../index.html">/var/www/CarForRentSymfony/src</a></li>
+         <li class="breadcrumb-item"><a href="index.html">Entity</a></li>
+         <li class="breadcrumb-item active">(Dashboard)</li>
+
+       </ol>
+      </nav>
+     </div>
+    </div>
+   </div>
+  </header>
+  <div class="container-fluid">
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Classes</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="classCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="classComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Image.php.html#8">App\Entity\Image</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Rent.php.html#8">App\Entity\Rent</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="User.php.html#12">App\Entity\User</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Car.php.html#11">App\Entity\Car</a></td><td class="text-right">52%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="User.php.html#12">App\Entity\User</a></td><td class="text-right">756</td></tr>
+       <tr><td><a href="Car.php.html#11">App\Entity\Car</a></td><td class="text-right">112</td></tr>
+       <tr><td><a href="Image.php.html#8">App\Entity\Image</a></td><td class="text-right">110</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Methods</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="methodCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="methodComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Car.php.html#81"><abbr title="App\Entity\Car::getId">getId</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Car.php.html#98"><abbr title="App\Entity\Car::getDescription">getDescription</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Car.php.html#146"><abbr title="App\Entity\Car::getSeats">getSeats</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Car.php.html#158"><abbr title="App\Entity\Car::getYear">getYear</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Car.php.html#170"><abbr title="App\Entity\Car::getCreatedAt">getCreatedAt</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Car.php.html#181"><abbr title="App\Entity\Car::getThumbnail">getThumbnail</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Car.php.html#186"><abbr title="App\Entity\Car::setThumbnail">setThumbnail</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Car.php.html#193"><abbr title="App\Entity\Car::getCreatedUser">getCreatedUser</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Car.php.html#198"><abbr title="App\Entity\Car::setCreatedUser">setCreatedUser</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Car.php.html#208"><abbr title="App\Entity\Car::getRents">getRents</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Car.php.html#213"><abbr title="App\Entity\Car::addRent">addRent</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Car.php.html#223"><abbr title="App\Entity\Car::removeRent">removeRent</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Image.php.html#25"><abbr title="App\Entity\Image::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Image.php.html#30"><abbr title="App\Entity\Image::getId">getId</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Image.php.html#35"><abbr title="App\Entity\Image::getPath">getPath</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Image.php.html#40"><abbr title="App\Entity\Image::setPath">setPath</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Image.php.html#47"><abbr title="App\Entity\Image::getCreatedAt">getCreatedAt</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Image.php.html#52"><abbr title="App\Entity\Image::setCreatedAt">setCreatedAt</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Image.php.html#59"><abbr title="App\Entity\Image::getCar">getCar</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Image.php.html#64"><abbr title="App\Entity\Image::setCar">setCar</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Image.php.html#75"><abbr title="App\Entity\Image::jsonParse">jsonParse</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Rent.php.html#39"><abbr title="App\Entity\Rent::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Rent.php.html#45"><abbr title="App\Entity\Rent::getId">getId</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Rent.php.html#50"><abbr title="App\Entity\Rent::getStatus">getStatus</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Rent.php.html#55"><abbr title="App\Entity\Rent::setStatus">setStatus</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Rent.php.html#62"><abbr title="App\Entity\Rent::getStartDate">getStartDate</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Rent.php.html#67"><abbr title="App\Entity\Rent::setStartDate">setStartDate</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Rent.php.html#74"><abbr title="App\Entity\Rent::getEndDate">getEndDate</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Rent.php.html#79"><abbr title="App\Entity\Rent::setEndDate">setEndDate</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Rent.php.html#86"><abbr title="App\Entity\Rent::getCreatedAt">getCreatedAt</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Rent.php.html#91"><abbr title="App\Entity\Rent::setCreatedAt">setCreatedAt</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Rent.php.html#98"><abbr title="App\Entity\Rent::getUpdatedAt">getUpdatedAt</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Rent.php.html#103"><abbr title="App\Entity\Rent::setUpdatedAt">setUpdatedAt</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Rent.php.html#110"><abbr title="App\Entity\Rent::getCar">getCar</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Rent.php.html#115"><abbr title="App\Entity\Rent::setCar">setCar</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Rent.php.html#122"><abbr title="App\Entity\Rent::getUser">getUser</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Rent.php.html#127"><abbr title="App\Entity\Rent::setUser">setUser</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="User.php.html#41"><abbr title="App\Entity\User::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="User.php.html#48"><abbr title="App\Entity\User::getId">getId</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="User.php.html#53"><abbr title="App\Entity\User::getEmail">getEmail</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="User.php.html#58"><abbr title="App\Entity\User::setEmail">setEmail</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="User.php.html#70"><abbr title="App\Entity\User::getUserIdentifier">getUserIdentifier</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="User.php.html#78"><abbr title="App\Entity\User::getRoles">getRoles</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="User.php.html#87"><abbr title="App\Entity\User::setRoles">setRoles</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="User.php.html#97"><abbr title="App\Entity\User::getPassword">getPassword</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="User.php.html#102"><abbr title="App\Entity\User::setPassword">setPassword</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="User.php.html#118"><abbr title="App\Entity\User::getName">getName</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="User.php.html#123"><abbr title="App\Entity\User::setName">setName</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="User.php.html#130"><abbr title="App\Entity\User::getCreatedAt">getCreatedAt</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="User.php.html#135"><abbr title="App\Entity\User::setCreatedAt">setCreatedAt</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="User.php.html#145"><abbr title="App\Entity\User::getCars">getCars</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="User.php.html#150"><abbr title="App\Entity\User::addCar">addCar</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="User.php.html#160"><abbr title="App\Entity\User::removeCar">removeCar</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="User.php.html#175"><abbr title="App\Entity\User::getRents">getRents</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="User.php.html#180"><abbr title="App\Entity\User::addRent">addRent</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="User.php.html#190"><abbr title="App\Entity\User::removeRent">removeRent</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="User.php.html#202"><abbr title="App\Entity\User::jsonParse">jsonParse</abbr></a></td><td class="text-right">0%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Car.php.html#223"><abbr title="App\Entity\Car::removeRent">removeRent</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="User.php.html#160"><abbr title="App\Entity\User::removeCar">removeCar</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="User.php.html#190"><abbr title="App\Entity\User::removeRent">removeRent</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Car.php.html#213"><abbr title="App\Entity\Car::addRent">addRent</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Image.php.html#64"><abbr title="App\Entity\Image::setCar">setCar</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="User.php.html#150"><abbr title="App\Entity\User::addCar">addCar</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="User.php.html#180"><abbr title="App\Entity\User::addRent">addRent</abbr></a></td><td class="text-right">6</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <footer>
+    <hr/>
+    <p>
+     <small>Generated by <a href="https://github.com/sebastianbergmann/php-code-coverage" target="_top">php-code-coverage 9.2.15</a> using <a href="https://secure.php.net/" target="_top">PHP 8.1.5</a> and <a href="https://phpunit.de/">PHPUnit 9.5.21</a> at Thu Jun 23 8:33:06 UTC 2022.</small>
+    </p>
+   </footer>
+  </div>
+  <script src="../_js/jquery.min.js" type="text/javascript"></script>
+  <script src="../_js/d3.min.js" type="text/javascript"></script>
+  <script src="../_js/nv.d3.min.js" type="text/javascript"></script>
+  <script type="text/javascript">
+$(document).ready(function() {
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#classCoverageDistribution svg')
+      .datum(getCoverageDistributionData([3,0,0,0,0,0,1,0,0,0,0,1], "Class Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#methodCoverageDistribution svg')
+      .datum(getCoverageDistributionData([57,0,0,0,0,0,0,0,0,0,0,14], "Method Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getCoverageDistributionData(data, label) {
+    var labels = [
+      '0%',
+      '0-10%',
+      '10-20%',
+      '20-30%',
+      '30-40%',
+      '40-50%',
+      '50-60%',
+      '60-70%',
+      '70-80%',
+      '80-90%',
+      '90-100%',
+      '100%'
+    ];
+    var values = [];
+    $.each(labels, function(key) {
+      values.push({x: labels[key], y: data[key]});
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Cyclomatic Complexity');
+
+    d3.select('#classComplexity svg')
+      .datum(getComplexityData([[100,0,"<a href=\"BaseEntity.php.html#5\">App\\Entity\\BaseEntity<\/a>"],[52.38095238095239,28,"<a href=\"Car.php.html#11\">App\\Entity\\Car<\/a>"],[0,10,"<a href=\"Image.php.html#8\">App\\Entity\\Image<\/a>"],[0,16,"<a href=\"Rent.php.html#8\">App\\Entity\\Rent<\/a>"],[0,27,"<a href=\"User.php.html#12\">App\\Entity\\User<\/a>"]], 'Class Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Method Complexity');
+
+    d3.select('#methodComplexity svg')
+      .datum(getComplexityData([[100,1,"<a href=\"Car.php.html#75\">App\\Entity\\Car::__construct<\/a>"],[0,1,"<a href=\"Car.php.html#81\">App\\Entity\\Car::getId<\/a>"],[100,1,"<a href=\"Car.php.html#86\">App\\Entity\\Car::getName<\/a>"],[100,1,"<a href=\"Car.php.html#91\">App\\Entity\\Car::setName<\/a>"],[0,1,"<a href=\"Car.php.html#98\">App\\Entity\\Car::getDescription<\/a>"],[100,1,"<a href=\"Car.php.html#103\">App\\Entity\\Car::setDescription<\/a>"],[100,1,"<a href=\"Car.php.html#110\">App\\Entity\\Car::getColor<\/a>"],[100,1,"<a href=\"Car.php.html#115\">App\\Entity\\Car::setColor<\/a>"],[100,1,"<a href=\"Car.php.html#122\">App\\Entity\\Car::getBrand<\/a>"],[100,1,"<a href=\"Car.php.html#127\">App\\Entity\\Car::setBrand<\/a>"],[100,1,"<a href=\"Car.php.html#134\">App\\Entity\\Car::getPrice<\/a>"],[100,1,"<a href=\"Car.php.html#139\">App\\Entity\\Car::setPrice<\/a>"],[0,1,"<a href=\"Car.php.html#146\">App\\Entity\\Car::getSeats<\/a>"],[100,1,"<a href=\"Car.php.html#151\">App\\Entity\\Car::setSeats<\/a>"],[0,1,"<a href=\"Car.php.html#158\">App\\Entity\\Car::getYear<\/a>"],[100,1,"<a href=\"Car.php.html#163\">App\\Entity\\Car::setYear<\/a>"],[0,1,"<a href=\"Car.php.html#170\">App\\Entity\\Car::getCreatedAt<\/a>"],[100,1,"<a href=\"Car.php.html#175\">App\\Entity\\Car::setCreatedAt<\/a>"],[0,1,"<a href=\"Car.php.html#181\">App\\Entity\\Car::getThumbnail<\/a>"],[0,1,"<a href=\"Car.php.html#186\">App\\Entity\\Car::setThumbnail<\/a>"],[0,1,"<a href=\"Car.php.html#193\">App\\Entity\\Car::getCreatedUser<\/a>"],[0,1,"<a href=\"Car.php.html#198\">App\\Entity\\Car::setCreatedUser<\/a>"],[0,1,"<a href=\"Car.php.html#208\">App\\Entity\\Car::getRents<\/a>"],[0,2,"<a href=\"Car.php.html#213\">App\\Entity\\Car::addRent<\/a>"],[0,3,"<a href=\"Car.php.html#223\">App\\Entity\\Car::removeRent<\/a>"],[0,1,"<a href=\"Image.php.html#25\">App\\Entity\\Image::__construct<\/a>"],[0,1,"<a href=\"Image.php.html#30\">App\\Entity\\Image::getId<\/a>"],[0,1,"<a href=\"Image.php.html#35\">App\\Entity\\Image::getPath<\/a>"],[0,1,"<a href=\"Image.php.html#40\">App\\Entity\\Image::setPath<\/a>"],[0,1,"<a href=\"Image.php.html#47\">App\\Entity\\Image::getCreatedAt<\/a>"],[0,1,"<a href=\"Image.php.html#52\">App\\Entity\\Image::setCreatedAt<\/a>"],[0,1,"<a href=\"Image.php.html#59\">App\\Entity\\Image::getCar<\/a>"],[0,2,"<a href=\"Image.php.html#64\">App\\Entity\\Image::setCar<\/a>"],[0,1,"<a href=\"Image.php.html#75\">App\\Entity\\Image::jsonParse<\/a>"],[0,1,"<a href=\"Rent.php.html#39\">App\\Entity\\Rent::__construct<\/a>"],[0,1,"<a href=\"Rent.php.html#45\">App\\Entity\\Rent::getId<\/a>"],[0,1,"<a href=\"Rent.php.html#50\">App\\Entity\\Rent::getStatus<\/a>"],[0,1,"<a href=\"Rent.php.html#55\">App\\Entity\\Rent::setStatus<\/a>"],[0,1,"<a href=\"Rent.php.html#62\">App\\Entity\\Rent::getStartDate<\/a>"],[0,1,"<a href=\"Rent.php.html#67\">App\\Entity\\Rent::setStartDate<\/a>"],[0,1,"<a href=\"Rent.php.html#74\">App\\Entity\\Rent::getEndDate<\/a>"],[0,1,"<a href=\"Rent.php.html#79\">App\\Entity\\Rent::setEndDate<\/a>"],[0,1,"<a href=\"Rent.php.html#86\">App\\Entity\\Rent::getCreatedAt<\/a>"],[0,1,"<a href=\"Rent.php.html#91\">App\\Entity\\Rent::setCreatedAt<\/a>"],[0,1,"<a href=\"Rent.php.html#98\">App\\Entity\\Rent::getUpdatedAt<\/a>"],[0,1,"<a href=\"Rent.php.html#103\">App\\Entity\\Rent::setUpdatedAt<\/a>"],[0,1,"<a href=\"Rent.php.html#110\">App\\Entity\\Rent::getCar<\/a>"],[0,1,"<a href=\"Rent.php.html#115\">App\\Entity\\Rent::setCar<\/a>"],[0,1,"<a href=\"Rent.php.html#122\">App\\Entity\\Rent::getUser<\/a>"],[0,1,"<a href=\"Rent.php.html#127\">App\\Entity\\Rent::setUser<\/a>"],[0,1,"<a href=\"User.php.html#41\">App\\Entity\\User::__construct<\/a>"],[0,1,"<a href=\"User.php.html#48\">App\\Entity\\User::getId<\/a>"],[0,1,"<a href=\"User.php.html#53\">App\\Entity\\User::getEmail<\/a>"],[0,1,"<a href=\"User.php.html#58\">App\\Entity\\User::setEmail<\/a>"],[0,1,"<a href=\"User.php.html#70\">App\\Entity\\User::getUserIdentifier<\/a>"],[0,1,"<a href=\"User.php.html#78\">App\\Entity\\User::getRoles<\/a>"],[0,1,"<a href=\"User.php.html#87\">App\\Entity\\User::setRoles<\/a>"],[0,1,"<a href=\"User.php.html#97\">App\\Entity\\User::getPassword<\/a>"],[0,1,"<a href=\"User.php.html#102\">App\\Entity\\User::setPassword<\/a>"],[100,1,"<a href=\"User.php.html#112\">App\\Entity\\User::eraseCredentials<\/a>"],[0,1,"<a href=\"User.php.html#118\">App\\Entity\\User::getName<\/a>"],[0,1,"<a href=\"User.php.html#123\">App\\Entity\\User::setName<\/a>"],[0,1,"<a href=\"User.php.html#130\">App\\Entity\\User::getCreatedAt<\/a>"],[0,1,"<a href=\"User.php.html#135\">App\\Entity\\User::setCreatedAt<\/a>"],[0,1,"<a href=\"User.php.html#145\">App\\Entity\\User::getCars<\/a>"],[0,2,"<a href=\"User.php.html#150\">App\\Entity\\User::addCar<\/a>"],[0,3,"<a href=\"User.php.html#160\">App\\Entity\\User::removeCar<\/a>"],[0,1,"<a href=\"User.php.html#175\">App\\Entity\\User::getRents<\/a>"],[0,2,"<a href=\"User.php.html#180\">App\\Entity\\User::addRent<\/a>"],[0,3,"<a href=\"User.php.html#190\">App\\Entity\\User::removeRent<\/a>"],[0,1,"<a href=\"User.php.html#202\">App\\Entity\\User::jsonParse<\/a>"]], 'Method Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getComplexityData(data, label) {
+    var values = [];
+    $.each(data, function(key) {
+      var value = Math.round(data[key][0]*100) / 100;
+      values.push({
+        x: value,
+        y: data[key][1],
+        class: data[key][2],
+        size: 0.05,
+        shape: 'diamond'
+      });
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+});
+  </script>
+ </body>
+</html>

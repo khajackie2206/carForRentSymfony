@@ -26,14 +26,13 @@ class CarController extends AbstractController
 
     #[Route('/', name: 'list_car', methods: 'GET')]
     public function index(
-        Request              $request,
-        CarRequest           $carRequest,
-        ValidatorInterface   $validator,
-        CarTransformer       $carTransformer,
+        Request $request,
+        CarRequest $carRequest,
+        ValidatorInterface $validator,
+        CarTransformer $carTransformer,
         ValidatorTransformer $validatorTransformer,
-        CarService           $carService
-    ): JsonResponse
-    {
+        CarService $carService
+    ): JsonResponse {
         $query = $request->query->all();
         $carRequest = $carRequest->fromArray($query);
         $errors = $validator->validate($carRequest);
@@ -56,15 +55,14 @@ class CarController extends AbstractController
     #[IsGranted('ROLE_ADMIN', statusCode: 403, message: "You are not allowed to enter!!!")]
     #[Route('/', name: 'add_car', methods: 'POST')]
     public function addCar(
-        Request              $request,
-        CarService           $carService,
-        AddCarRequest        $addCarRequest,
-        CarTransformer       $carTransformer,
-        AddCarRequestToCar   $addCarRequestToCar,
+        Request $request,
+        CarService $carService,
+        AddCarRequest $addCarRequest,
+        CarTransformer $carTransformer,
+        AddCarRequestToCar $addCarRequestToCar,
         ValidatorTransformer $validatorTransformer,
-        ValidatorInterface   $validator
-    ): JsonResponse
-    {
+        ValidatorInterface $validator
+    ): JsonResponse {
         $requestBody = json_decode($request->getContent(), true);
         $carRequest = $addCarRequest->fromArray($requestBody);
         $errors = $validator->validate($carRequest);
@@ -81,15 +79,14 @@ class CarController extends AbstractController
     #[IsGranted('ROLE_ADMIN', statusCode: 403, message: "You are not allowed to enter!!!")]
     #[Route('/{id}', name: 'update_car_put', methods: ['PUT'])]
     public function updatePut(
-        Car                  $car,
-        Request              $request,
-        CarService           $carService,
-        UpdateCarRequest     $updateCarRequest,
-        CarTransformer       $carTransformer,
-        ValidatorInterface   $validator,
+        Car $car,
+        Request $request,
+        CarService $carService,
+        UpdateCarRequest $updateCarRequest,
+        CarTransformer $carTransformer,
+        ValidatorInterface $validator,
         ValidatorTransformer $validatorTransformer
-    ): JsonResponse
-    {
+    ): JsonResponse {
         $requestBody = json_decode($request->getContent(), true);
         $carRequest = $updateCarRequest->fromArray($requestBody);
         $errors = $validator->validate($carRequest);
@@ -106,15 +103,14 @@ class CarController extends AbstractController
     #[IsGranted('ROLE_ADMIN', statusCode: 403, message: "You are not allowed to enter!!!")]
     #[Route('/{id}', name: 'update_car_patch', methods: ['PATCH'])]
     public function updatePatch(
-        Car                  $car,
-        Request              $request,
-        CarService           $carService,
-        UpdateCarRequest     $updateCarRequest,
-        CarTransformer       $carTransformer,
-        ValidatorInterface   $validator,
+        Car $car,
+        Request $request,
+        CarService $carService,
+        UpdateCarRequest $updateCarRequest,
+        CarTransformer $carTransformer,
+        ValidatorInterface $validator,
         ValidatorTransformer $validatorTransformer
-    ): JsonResponse
-    {
+    ): JsonResponse {
         $requestBody = json_decode($request->getContent(), true);
         $carRequest = $updateCarRequest->fromArray($requestBody);
         $errors = $validator->validate($carRequest);

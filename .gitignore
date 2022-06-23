@@ -10,3 +10,10 @@
 /.env
 /.idea/
 /config/jwt/*.pem
+
+###> phpunit/phpunit ###
+/phpunit.xml
+.phpunit.result.cache
+###< phpunit/phpunit ###
+/.env.test
+/phpunit.xml.dist

@@ -24,14 +24,13 @@ class CarService
     private PatchCarRequestToCar $patchCarRequestToCar;
 
     public function __construct(
-        ImageRepository      $imageRepository,
-        CarRepository        $carRepository,
-        UserRepository       $userRepository,
-        ImageService         $imageService,
-        PutCarRequestToCar   $putCarRequestToCar,
+        ImageRepository $imageRepository,
+        CarRepository $carRepository,
+        UserRepository $userRepository,
+        ImageService $imageService,
+        PutCarRequestToCar $putCarRequestToCar,
         PatchCarRequestToCar $patchCarRequestToCar
-    )
-    {
+    ) {
         $this->carRepository = $carRepository;
         $this->imageService = $imageService;
         $this->userRepository = $userRepository;

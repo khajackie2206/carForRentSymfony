@@ -21,8 +21,7 @@ class CarRequest extends BaseRequest
 
     #[Assert\Type('integer')]
     #[Assert\Choice(
-        choices: self::SEATS_LIST
-    )]
+        choices: self::SEATS_LIST )]
     private $seats;
 
     #[Assert\Choice(
