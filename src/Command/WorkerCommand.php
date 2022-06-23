@@ -2,21 +2,23 @@
 
 namespace App\Command;
 
-use Symfony\Component\Console\Attribute\AsCommand;
 use Aws\Exception\AwsException;
 use Aws\Sqs\SqsClient;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-#[AsCommand(name: 'app:receiver')]
-class ReceiverCommand extends Command
+#[AsCommand(name: 'app:worker')]
+class WorkerCommand extends Command
 {
+    protected static $defaultName = 'app:worker';
+
     private SqsClient $sqsClient;
 
-    public function __construct(SqsClient $sqsClient, string $name = null)
+    public function __construct(SqsClient $sqsClient)
     {
-        parent::__construct($name);
+        parent::__construct();
         $this->sqsClient = $sqsClient;
     }
 
