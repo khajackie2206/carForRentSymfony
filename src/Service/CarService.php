@@ -17,24 +17,15 @@ use Doctrine\ORM\EntityNotFoundException;
 class CarService
 {
     private CarRepository $carRepository;
-    private ImageService $imageService;
-    private UserRepository $userRepository;
-    private ImageRepository $imageRepository;
     private PutCarRequestToCar $putCarRequestToCar;
     private PatchCarRequestToCar $patchCarRequestToCar;
 
     public function __construct(
-        ImageRepository $imageRepository,
         CarRepository $carRepository,
-        UserRepository $userRepository,
-        ImageService $imageService,
         PutCarRequestToCar $putCarRequestToCar,
         PatchCarRequestToCar $patchCarRequestToCar
     ) {
         $this->carRepository = $carRepository;
-        $this->imageService = $imageService;
-        $this->userRepository = $userRepository;
-        $this->imageRepository = $imageRepository;
         $this->putCarRequestToCar = $putCarRequestToCar;
         $this->patchCarRequestToCar = $patchCarRequestToCar;
     }

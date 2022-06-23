@@ -6,6 +6,7 @@
 parameters:
   brochures_directory: '%kernel.project_dir%/public/images/'
   s3url: '%env(S3_URL)%'
+  sqsUrl: '%env(SQS_URL)%'
 services:
   # default configuration for services in *this* file
   _defaults:
