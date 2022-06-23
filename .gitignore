@@ -10,7 +10,7 @@
 /.env
 /.idea/
 /config/jwt/*.pem
-
+/coverage/
 ###> phpunit/phpunit ###
 /phpunit.xml
 .phpunit.result.cache
