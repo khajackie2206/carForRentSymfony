@@ -21,9 +21,13 @@ services:
       - '../src/DependencyInjection/'
       - '../src/Entity/'
       - '../src/Kernel.php'
-  App\EventListener\ExceptionListener:
-    tags:
-      - { name: kernel.event_listener, event: kernel.exception }
+
+  App\Controller\:
+    resource: '../src/Controller'
+    tags: [ 'controller.service_arguments' ]
+#  App\EventListener\ExceptionListener:
+#    tags:
+#      - { name: kernel.event_listener, event: kernel.exception }
   acme_api.event.authentication_failure_listener:
     class: App\EventListener\AuthenticationFailureListener
     tags:
