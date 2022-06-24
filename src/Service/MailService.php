@@ -5,9 +5,16 @@ namespace App\Service;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
+use Symfony\Component\DependencyInjection\ParameterBag\ContainerBagInterface;
 
 class MailService
 {
+    private ContainerBagInterface $params;
+    public function __construct(ContainerBagInterface $params)
+    {
+        $this->params = $params;
+    }
+
     public function sendMail()
     {
         $mail = new PHPMailer(true);
@@ -16,8 +23,8 @@ class MailService
             $mail->isSMTP();
             $mail->Host = 'smtp.zoho.com';
             $mail->SMTPAuth = true;
-            $mail->Username = 'support@khajackie2206.me';
-            $mail->Password = 'KhaMinh0123';
+            $mail->Username = $this->params->get('zohoMail');
+            $mail->Password = $this->params->get('zohoPassword');
             $mail->SMTPSecure = 'tls';
             $mail->Port = 587;
 
