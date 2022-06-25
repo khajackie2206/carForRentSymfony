@@ -27,11 +27,13 @@ class CarRequest extends BaseRequest
     #[Assert\Choice(
         choices: self::ORDER_BY_LIST,
     )]
+    #[Assert\Type('string')]
     private ?string $orderBy = self::DEFAULT_ORDER_BY;
 
     #[Assert\Choice(
         choices: self::ORDER_TYPE_LIST,
     )]
+    #[Assert\Type('string')]
     private ?string $orderType = self::DEFAULT_ORDER_TYPE;
 
     #[Assert\Type('int')]

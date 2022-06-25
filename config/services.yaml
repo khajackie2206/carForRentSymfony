@@ -9,6 +9,8 @@ parameters:
   sqsUrl: '%env(SQS_URL)%'
   zohoMail: '%env(ZOHO_MAIL)%'
   zohoPassword: '%env(ZOHO_PASSWORD)%'
+  zohoHost: '%env(ZOHO_HOST)%'
+  templateMail: '%kernel.project_dir%/public/templates/sendmail.html'
 services:
   # default configuration for services in *this* file
   _defaults:
