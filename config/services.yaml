@@ -7,6 +7,10 @@ parameters:
   brochures_directory: '%kernel.project_dir%/public/images/'
   s3url: '%env(S3_URL)%'
   sqsUrl: '%env(SQS_URL)%'
+  zohoMail: '%env(ZOHO_MAIL)%'
+  zohoPassword: '%env(ZOHO_PASSWORD)%'
+  zohoHost: '%env(ZOHO_HOST)%'
+  templateMail: '%kernel.project_dir%/public/templates/sendmail.html'
 services:
   # default configuration for services in *this* file
   _defaults:
@@ -21,9 +25,13 @@ services:
       - '../src/DependencyInjection/'
       - '../src/Entity/'
       - '../src/Kernel.php'
-  App\EventListener\ExceptionListener:
-    tags:
-      - { name: kernel.event_listener, event: kernel.exception }
+
+  App\Controller\:
+    resource: '../src/Controller'
+    tags: [ 'controller.service_arguments' ]
+#  App\EventListener\ExceptionListener:
+#    tags:
+#      - { name: kernel.event_listener, event: kernel.exception }
   acme_api.event.authentication_failure_listener:
     class: App\EventListener\AuthenticationFailureListener
     tags:
